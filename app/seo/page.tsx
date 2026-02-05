@@ -37,7 +37,6 @@ export default function SeoPage() {
             <Link href="/" className="font-semibold text-teal-700">Home</Link>
             <Link href="/services" className="font-semibold text-teal-700">Services</Link>
             <Link href="/service-areas" className="font-semibold text-teal-700">Service Areas</Link>
-            <Link href="/resources" className="font-semibold text-teal-700">Resources</Link>
             <Link href="/emergency" className="font-semibold text-teal-700">Emergency</Link>
           </div>
           <div className="pt-2 text-xs text-ink-600">
@@ -46,9 +45,6 @@ export default function SeoPage() {
               <Link href="/" className="font-semibold text-teal-700">Home (LocalBusiness)</Link>
               <Link href="/services/garage-door-repair/garage-door-not-opening-or-stuck" className="font-semibold text-teal-700">
                 Service page
-              </Link>
-              <Link href="/resources/garage-door-wont-open-7-fast-checks-hamilton" className="font-semibold text-teal-700">
-                Resource article
               </Link>
               <Link href="/service-areas/hamilton" className="font-semibold text-teal-700">
                 City page

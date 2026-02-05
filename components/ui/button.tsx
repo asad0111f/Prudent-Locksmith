@@ -29,7 +29,8 @@ export function Button({ href, variant = 'primary', size = 'md', className, ...p
     sm: 'px-4 py-2 text-xs'
   };
   const variants = {
-    primary: 'bg-teal-600 text-white hover:bg-teal-700',
+    primary:
+      'bg-gradient-to-b from-teal-500 via-teal-600 to-teal-700 text-white shadow-sm hover:from-teal-500 hover:via-teal-600 hover:to-teal-800',
     secondary: 'border border-slate-300 text-ink-950 hover:border-slate-400 hover:bg-slate-50'
   };
 

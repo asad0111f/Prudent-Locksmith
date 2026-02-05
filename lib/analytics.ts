@@ -12,8 +12,6 @@ export type PageSource =
   | 'service'
   | 'service_areas'
   | 'city'
-  | 'resources'
-  | 'resource'
   | 'emergency'
   | 'landing'
   | 'contact'
@@ -51,8 +49,6 @@ export function getPageSource(pathname: string | null): PageSource {
   if (pathname.startsWith('/services/')) return 'service';
   if (pathname === '/service-areas') return 'service_areas';
   if (pathname.startsWith('/service-areas/')) return 'city';
-  if (pathname === '/resources') return 'resources';
-  if (pathname.startsWith('/resources/')) return 'resource';
   if (pathname === '/emergency') return 'emergency';
   if (pathname.startsWith('/lp')) return 'landing';
   if (pathname === '/contact') return 'contact';

@@ -50,9 +50,11 @@ export default function ServicesPage() {
     <>
       <section id="top">
         <Section className="pt-12">
-          <Container>
-            <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
-              <div className="space-y-6">
+          <div className="relative">
+            <div className="pointer-events-none absolute inset-0 -z-10 bg-accent-radial" aria-hidden="true" />
+            <Container>
+              <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
+                <div className="space-y-6">
                 <Reveal as="div" delay={0}>
                   <Badge>Popular & Emergency Services</Badge>
                 </Reveal>
@@ -74,22 +76,25 @@ export default function ServicesPage() {
                   </Link>
                 </Reveal>
               </div>
-              <Card className="space-y-4">
-                <h2 className="text-xl font-semibold text-ink-950">Emergency dispatch</h2>
-                <p className="text-sm text-ink-700">Need help fast? We prioritize urgent requests and confirm ETAs before dispatch.</p>
-                <PhoneLink asButton className="w-full">Call {SITE.phoneDisplay}</PhoneLink>
-              </Card>
-            </div>
-          </Container>
+                <Card className="space-y-4">
+                  <h2 className="text-xl font-semibold text-ink-950">Emergency dispatch</h2>
+                  <p className="text-sm text-ink-700">Need help fast? We prioritize urgent requests and confirm ETAs before dispatch.</p>
+                  <PhoneLink asButton className="w-full">Call {SITE.phoneDisplay}</PhoneLink>
+                </Card>
+              </div>
+            </Container>
+          </div>
         </Section>
       </section>
 
+      <div className="h-px w-full bg-section-divider" aria-hidden="true" />
       <Section>
         <Container>
           <TrustStrip />
         </Container>
       </Section>
 
+      <div className="h-px w-full bg-section-divider" aria-hidden="true" />
       <Section>
         <Container>
           <Reveal as="div" className="flex items-center justify-between">
@@ -116,6 +121,7 @@ export default function ServicesPage() {
       </Section>
 
       <section id="categories">
+        <div className="h-px w-full bg-section-divider" aria-hidden="true" />
         <Section className="bg-slate-50">
           <Container>
             <div className="space-y-12">
@@ -127,6 +133,7 @@ export default function ServicesPage() {
         </Section>
       </section>
 
+      <div className="h-px w-full bg-section-divider" aria-hidden="true" />
       <Section>
         <Container>
           <Reveal as="h2" className="text-2xl font-semibold text-ink-950">Related reading</Reveal>
@@ -138,6 +145,7 @@ export default function ServicesPage() {
         </Container>
       </Section>
 
+      <div className="h-px w-full bg-section-divider" aria-hidden="true" />
       <Section>
         <Container>
           <ReviewsSection title="Service experiences from local customers" />

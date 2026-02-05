@@ -1,6 +1,5 @@
 import { servicesConfig, getServiceUrl } from '@/lib/services';
 import { cities } from '@/lib/cities';
-import { getAllResources } from '@/lib/resources';
 
 export type InternalLink = {
   href: string;
@@ -30,17 +29,14 @@ function pickFrom<T>(items: T[], count: number, seed: number) {
 export function getInternalLinks({
   type,
   currentId,
-  currentCity,
-  currentResource
+  currentCity
 }: {
-  type: 'service' | 'city' | 'resource';
+  type: 'service' | 'city';
   currentId?: string;
   currentCity?: string;
-  currentResource?: string;
 }): InternalLink[] {
   const services = servicesConfig.flatMap((category) => category.services);
-  const resources = getAllResources().filter((resource) => !resource.noindex);
-  const seed = hashSeed(currentId || currentCity || currentResource || type);
+  const seed = hashSeed(currentId || currentCity || type);
 
   const serviceLinks = pickFrom(
     services.filter((service) => service.id !== currentId),
@@ -60,14 +56,5 @@ export function getInternalLinks({
     label: `${city.name} service area`
   }));
 
-  const resourceLinks = pickFrom(
-    resources.filter((resource) => resource.slug !== currentResource),
-    1,
-    seed + 23
-  ).map((resource) => ({
-    href: `/resources/${resource.slug}`,
-    label: resource.title
-  }));
-
-  return [...serviceLinks, ...cityLinks, ...resourceLinks];
+  return [...serviceLinks, ...cityLinks];
 }

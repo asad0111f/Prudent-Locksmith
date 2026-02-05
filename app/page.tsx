@@ -34,9 +34,10 @@ export default function HomePage() {
   return (
     <>
       <Section className="pt-12">
-        <Container>
-          <div className="relative grid items-center gap-10 lg:grid-cols-[1.2fr_0.8fr]">
-            <div className="pointer-events-none absolute -top-24 left-0 h-64 w-64 rounded-full bg-teal-200/30 blur-3xl" aria-hidden="true" />
+        <div className="relative">
+          <div className="pointer-events-none absolute inset-0 -z-10 bg-hero-gradient" aria-hidden="true" />
+          <Container>
+            <div className="relative grid items-center gap-10 lg:grid-cols-[1.2fr_0.8fr]">
             <div className="space-y-6">
               <Reveal as="div" delay={0}>
                 <Badge>Emergency & Same-Day Dispatch</Badge>
@@ -78,16 +79,19 @@ export default function HomePage() {
                 <PhoneLink asButton className="w-full">Call for Immediate Service</PhoneLink>
               </div>
             </Card>
-          </div>
-        </Container>
+            </div>
+          </Container>
+        </div>
       </Section>
 
+      <div className="h-px w-full bg-section-divider" aria-hidden="true" />
       <Section>
         <Container>
           <TrustStrip />
         </Container>
       </Section>
 
+      <div className="h-px w-full bg-section-divider" aria-hidden="true" />
       <Section>
         <Container>
           <Reveal as="div" className="flex items-center justify-between">
@@ -140,6 +144,7 @@ export default function HomePage() {
         </Container>
       </Section>
 
+      <div className="h-px w-full bg-section-divider" aria-hidden="true" />
       <Section className="bg-slate-50">
         <Container>
           <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
@@ -161,6 +166,7 @@ export default function HomePage() {
         </Container>
       </Section>
 
+      <div className="h-px w-full bg-section-divider" aria-hidden="true" />
       <Section>
         <Container>
           <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
@@ -193,6 +199,7 @@ export default function HomePage() {
         </Container>
       </Section>
 
+      <div className="h-px w-full bg-section-divider" aria-hidden="true" />
       <Section>
         <Container>
           <ReviewsSection />

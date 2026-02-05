@@ -78,7 +78,9 @@ export default function ServicePage({ params }: { params: { category: string; se
   return (
     <>
       <Section className="pt-8">
-        <Container>
+        <div className="relative">
+          <div className="pointer-events-none absolute inset-0 -z-10 bg-accent-radial" aria-hidden="true" />
+          <Container>
           <Breadcrumbs
             baseUrl={SITE.baseUrl}
             items={[
@@ -141,15 +143,18 @@ export default function ServicePage({ params }: { params: { category: string; se
               />
             </div>
           </div>
-        </Container>
+          </Container>
+        </div>
       </Section>
 
+      <div className="h-px w-full bg-section-divider" aria-hidden="true" />
       <Section>
         <Container>
           <TrustStrip />
         </Container>
       </Section>
 
+      <div className="h-px w-full bg-section-divider" aria-hidden="true" />
       <Section>
         <Container>
           <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
@@ -191,6 +196,7 @@ export default function ServicePage({ params }: { params: { category: string; se
         </Container>
       </Section>
 
+      <div className="h-px w-full bg-section-divider" aria-hidden="true" />
       <Section className="bg-slate-50">
         <Container>
           <div className="flex items-center justify-between">
@@ -220,6 +226,7 @@ export default function ServicePage({ params }: { params: { category: string; se
         </Container>
       </Section>
 
+      <div className="h-px w-full bg-section-divider" aria-hidden="true" />
       <Section>
         <Container>
           <div className="rounded-2xl border border-slate-100 bg-white p-6 shadow-soft">
@@ -238,6 +245,7 @@ export default function ServicePage({ params }: { params: { category: string; se
         </Container>
       </Section>
 
+      <div className="h-px w-full bg-section-divider" aria-hidden="true" />
       <Section>
         <Container>
           <InternalLinks type="service" currentId={service.id} />

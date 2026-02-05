@@ -60,7 +60,9 @@ export default function EmergencyPage() {
   return (
     <>
       <Section className="pt-12">
-        <Container>
+        <div className="relative">
+          <div className="pointer-events-none absolute inset-0 -z-10 bg-hero-gradient" aria-hidden="true" />
+          <Container>
           <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
             <div className="space-y-6">
               <Reveal as="div" delay={0}>
@@ -97,15 +99,18 @@ export default function EmergencyPage() {
               </PhoneLink>
             </Card>
           </div>
-        </Container>
+          </Container>
+        </div>
       </Section>
 
+      <div className="h-px w-full bg-section-divider" aria-hidden="true" />
       <Section>
         <Container>
           <TrustStrip />
         </Container>
       </Section>
 
+      <div className="h-px w-full bg-section-divider" aria-hidden="true" />
       <Section>
         <Container>
           <h2 className="text-2xl font-semibold text-ink-950">Top urgent services</h2>
@@ -123,6 +128,7 @@ export default function EmergencyPage() {
         </Container>
       </Section>
 
+      <div className="h-px w-full bg-section-divider" aria-hidden="true" />
       <Section>
         <Container>
           <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
@@ -132,6 +138,7 @@ export default function EmergencyPage() {
         </Container>
       </Section>
 
+      <div className="h-px w-full bg-section-divider" aria-hidden="true" />
       <Section>
         <Container>
           <SeoFaq title="Emergency service FAQs" items={faqs} includeJsonLd />

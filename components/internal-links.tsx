@@ -3,14 +3,13 @@ import { Card } from '@/components/ui/card';
 import { getInternalLinks } from '@/lib/internal-links';
 
 type InternalLinksProps = {
-  type: 'service' | 'city' | 'resource';
+  type: 'service' | 'city';
   currentId?: string;
   currentCity?: string;
-  currentResource?: string;
 };
 
-export function InternalLinks({ type, currentId, currentCity, currentResource }: InternalLinksProps) {
-  const links = getInternalLinks({ type, currentId, currentCity, currentResource });
+export function InternalLinks({ type, currentId, currentCity }: InternalLinksProps) {
+  const links = getInternalLinks({ type, currentId, currentCity });
 
   if (links.length === 0) return null;
 

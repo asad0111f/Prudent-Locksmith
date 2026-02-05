@@ -22,7 +22,6 @@ export function Header() {
           <nav className="hidden items-center gap-6 text-sm font-medium text-ink-700 md:flex">
             <Link href="/" className="transition hover:text-ink-950">Home</Link>
             <Link href="/emergency" className="transition hover:text-ink-950">Emergency</Link>
-            <Link href="/resources" className="transition hover:text-ink-950">Resources</Link>
             <ServicesMenu active={servicesActive} />
             <Link href="/service-areas" className="transition hover:text-ink-950">Service Areas</Link>
             <Link href="/about" className="transition hover:text-ink-950">About</Link>
@@ -145,7 +144,7 @@ function ServicesMenu({ active }: { active: boolean }) {
           maxHeight: `calc(100vh - ${headerHeight}px - 16px)`
         }}
       >
-        <div className="mx-auto w-full max-w-5xl rounded-2xl border border-slate-200 bg-white p-6 shadow-soft">
+        <div className="mega-menu-gradient mx-auto w-full max-w-5xl rounded-2xl border border-slate-200 p-6 shadow-soft">
           <div className="grid gap-6 lg:grid-cols-[1fr_1fr_0.9fr]">
             {servicesConfig.map((category) => (
               <div key={category.slug} className="border-l border-slate-100 pl-4">
@@ -175,7 +174,7 @@ function ServicesMenu({ active }: { active: boolean }) {
                 </ul>
               </div>
             ))}
-            <div className="rounded-2xl border border-rose-100 bg-rose-50/60 p-4">
+            <div className="mega-top-gradient rounded-2xl border border-rose-100 p-4">
               <p className="text-xs font-semibold uppercase tracking-wide text-rose-600">Top Services</p>
               <p className="mt-2 text-sm font-semibold text-ink-950">Emergency priority</p>
               <ul className="mt-3 space-y-2 text-sm text-ink-700">
@@ -221,7 +220,6 @@ function MobileMenu() {
         <nav className="flex flex-col gap-3 text-sm font-medium">
           <Link href="/" className="text-ink-700 hover:text-ink-950">Home</Link>
           <Link href="/emergency" className="text-ink-700 hover:text-ink-950">Emergency</Link>
-          <Link href="/resources" className="text-ink-700 hover:text-ink-950">Resources</Link>
           <details>
             <summary className="cursor-pointer list-none text-ink-700">Services</summary>
             <div className="mt-3 grid gap-3">

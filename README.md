@@ -30,6 +30,5 @@ Warning: Do not commit secrets in any `.env*` file.
 - `/`
 - `/services`
 - `/service-areas`
-- `/resources`
 - `/emergency`
 - `/lp` (noindex)

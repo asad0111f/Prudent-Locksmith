@@ -106,7 +106,9 @@ export default function LandingPage({ params }: { params: { slug: string } }) {
     <>
       <LandingPageClient slug={landing.slug} serviceName={primaryService.name} city={landing.city} />
       <Section className="pt-10">
-        <Container>
+        <div className="relative">
+          <div className="pointer-events-none absolute inset-0 -z-10 bg-hero-gradient" aria-hidden="true" />
+          <Container>
           <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
             <div className="space-y-6">
               {landing.urgencyBadge ? (
@@ -165,15 +167,18 @@ export default function LandingPage({ params }: { params: { slug: string } }) {
               </Card>
             ) : null}
           </div>
-        </Container>
+          </Container>
+        </div>
       </Section>
 
+      <div className="h-px w-full bg-section-divider" aria-hidden="true" />
       <Section>
         <Container>
           <TrustStrip />
         </Container>
       </Section>
 
+      <div className="h-px w-full bg-section-divider" aria-hidden="true" />
       <Section>
         <Container>
           <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
@@ -207,6 +212,7 @@ export default function LandingPage({ params }: { params: { slug: string } }) {
         </Container>
       </Section>
 
+      <div className="h-px w-full bg-section-divider" aria-hidden="true" />
       <Section>
         <Container>
           <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
@@ -216,6 +222,7 @@ export default function LandingPage({ params }: { params: { slug: string } }) {
         </Container>
       </Section>
 
+      <div className="h-px w-full bg-section-divider" aria-hidden="true" />
       <Section>
         <Container>
           <div className="flex items-center justify-between">
@@ -236,6 +243,7 @@ export default function LandingPage({ params }: { params: { slug: string } }) {
         </Container>
       </Section>
 
+      <div className="h-px w-full bg-section-divider" aria-hidden="true" />
       <Section>
         <Container>
           <SeoFaq title="Frequently asked questions" items={landing.faqs} includeJsonLd={Boolean(landing.enableIndexing)} />

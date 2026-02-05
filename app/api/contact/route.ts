@@ -75,8 +75,6 @@ function getPageTypeFromUrl(url: string) {
     if (path.startsWith('/services/')) return 'service';
     if (path === '/service-areas') return 'service_areas';
     if (path.startsWith('/service-areas/')) return 'city';
-    if (path === '/resources') return 'resources';
-    if (path.startsWith('/resources/')) return 'resource';
     if (path === '/emergency') return 'emergency';
     if (path.startsWith('/lp/')) return 'landing';
     if (path === '/contact') return 'contact';
