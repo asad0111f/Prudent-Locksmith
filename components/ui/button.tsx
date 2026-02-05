@@ -30,7 +30,7 @@ export function Button({ href, variant = 'primary', size = 'md', className, ...p
   };
   const variants = {
     primary: 'bg-teal-600 text-white hover:bg-teal-700',
-    secondary: 'border border-slate-200 text-ink-950 hover:border-slate-300 hover:bg-slate-50'
+    secondary: 'border border-slate-300 text-ink-950 hover:border-slate-400 hover:bg-slate-50'
   };
 
   const classes = clsx(base, sizes[size], variants[variant], className);
