@@ -2,12 +2,24 @@ import clsx from 'clsx';
 import Link from 'next/link';
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes } from 'react';
 
-type ButtonProps = {
+type ButtonBaseProps = {
   href?: string;
   variant?: 'primary' | 'secondary';
   size?: 'md' | 'sm';
   className?: string;
-} & ButtonHTMLAttributes<HTMLButtonElement> & AnchorHTMLAttributes<HTMLAnchorElement>;
+};
+
+type AnchorButtonProps = ButtonBaseProps &
+  AnchorHTMLAttributes<HTMLAnchorElement> & {
+    href: string;
+  };
+
+type NativeButtonProps = ButtonBaseProps &
+  ButtonHTMLAttributes<HTMLButtonElement> & {
+    href?: undefined;
+  };
+
+type ButtonProps = AnchorButtonProps | NativeButtonProps;
 
 export function Button({ href, variant = 'primary', size = 'md', className, ...props }: ButtonProps) {
   const base =

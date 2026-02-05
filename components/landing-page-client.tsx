@@ -1,7 +1,7 @@
 'use client';
 
-import { useEffect } from 'react';
-import { usePathname, useSearchParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
 import { trackEvent } from '@/lib/analytics';
 
 type LandingPageClientProps = {
@@ -12,7 +12,13 @@ type LandingPageClientProps = {
 
 export function LandingPageClient({ slug, serviceName, city }: LandingPageClientProps) {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
+  const [queryString, setQueryString] = useState('');
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setQueryString(window.location.search || '');
+    }
+  }, [pathname]);
 
   useEffect(() => {
     const keys = [
@@ -26,8 +32,9 @@ export function LandingPageClient({ slug, serviceName, city }: LandingPageClient
       'gbraid'
     ];
     const attribution: Record<string, string> = {};
+    const params = new URLSearchParams(queryString);
     keys.forEach((key) => {
-      const value = searchParams?.get(key) || '';
+      const value = params.get(key) || '';
       if (value) {
         attribution[key] = value;
       }
@@ -47,7 +54,7 @@ export function LandingPageClient({ slug, serviceName, city }: LandingPageClient
       city,
       slug
     });
-  }, [pathname, searchParams, slug, serviceName, city]);
+  }, [pathname, queryString, slug, serviceName, city]);
 
   return null;
 }

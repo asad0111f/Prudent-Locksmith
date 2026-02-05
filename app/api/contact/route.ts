@@ -238,7 +238,7 @@ export async function POST(request: Request) {
       subject,
       text: textBody,
       html: htmlBody,
-      reply_to: isValidEmail(data.email) ? data.email : undefined
+      replyTo: isValidEmail(data.email) ? data.email : undefined
     });
   } catch (error) {
     logEvent('error', 'contact_email_provider', { ip: ipMasked, error: (error as Error).message });

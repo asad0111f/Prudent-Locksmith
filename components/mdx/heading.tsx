@@ -1,4 +1,5 @@
-import { createElement } from 'react';
+import type { HTMLAttributes, ReactNode } from 'react';
+import clsx from 'clsx';
 
 function slugify(text: string) {
   return text
@@ -9,24 +10,40 @@ function slugify(text: string) {
     .replace(/-+/g, '-');
 }
 
-function getText(children: React.ReactNode): string {
+function getText(children: ReactNode): string {
   if (typeof children === 'string') return children;
   if (Array.isArray(children)) return children.map(getText).join(' ');
   if (children && typeof children === 'object' && 'props' in children) {
-    // @ts-expect-error react node
-    return getText(children.props?.children);
+    const node = children as { props?: { children?: ReactNode } };
+    return getText(node.props?.children);
   }
   return '';
 }
 
-export function H2({ children }: { children: React.ReactNode }) {
+export function H2({ children, className, ...props }: HTMLAttributes<HTMLHeadingElement>) {
   const text = getText(children);
   const id = slugify(text);
-  return createElement('h2', { id, className: 'text-2xl font-semibold text-ink-950 scroll-mt-28' }, children);
+  return (
+    <h2
+      id={props.id || id}
+      className={clsx('text-2xl font-semibold text-ink-950 scroll-mt-28', className)}
+      {...props}
+    >
+      {children}
+    </h2>
+  );
 }
 
-export function H3({ children }: { children: React.ReactNode }) {
+export function H3({ children, className, ...props }: HTMLAttributes<HTMLHeadingElement>) {
   const text = getText(children);
   const id = slugify(text);
-  return createElement('h3', { id, className: 'text-xl font-semibold text-ink-950 scroll-mt-28' }, children);
+  return (
+    <h3
+      id={props.id || id}
+      className={clsx('text-xl font-semibold text-ink-950 scroll-mt-28', className)}
+      {...props}
+    >
+      {children}
+    </h3>
+  );
 }

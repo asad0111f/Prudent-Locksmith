@@ -47,33 +47,35 @@ export default function ServicesPage() {
 
   return (
     <>
-      <Section className="pt-12" id="top">
-        <Container>
-          <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
-            <div className="space-y-6 motion-safe:animate-fade-up">
-              <Badge>Popular & Emergency Services</Badge>
-              <h1 className="text-4xl font-semibold text-ink-950">Complete locksmith and garage door care</h1>
-              <p className="text-lg text-ink-700">
-                From urgent lockouts to planned repairs and upgrades, Prudent delivers clear pricing and fast response across local neighborhoods.
-              </p>
-              <div className="flex flex-wrap gap-3">
-                <PhoneLink asButton>Call Now</PhoneLink>
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center justify-center rounded-full border border-slate-200 px-6 py-3 text-sm font-semibold text-ink-950 transition hover:border-slate-300 hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 focus-visible:ring-offset-2"
-                >
-                  Request Service
-                </Link>
+      <section id="top">
+        <Section className="pt-12">
+          <Container>
+            <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
+              <div className="space-y-6 motion-safe:animate-fade-up">
+                <Badge>Popular & Emergency Services</Badge>
+                <h1 className="text-4xl font-semibold text-ink-950">Complete locksmith and garage door care</h1>
+                <p className="text-lg text-ink-700">
+                  From urgent lockouts to planned repairs and upgrades, Prudent delivers clear pricing and fast response across local neighborhoods.
+                </p>
+                <div className="flex flex-wrap gap-3">
+                  <PhoneLink asButton>Call Now</PhoneLink>
+                  <Link
+                    href="/contact"
+                    className="inline-flex items-center justify-center rounded-full border border-slate-200 px-6 py-3 text-sm font-semibold text-ink-950 transition hover:border-slate-300 hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 focus-visible:ring-offset-2"
+                  >
+                    Request Service
+                  </Link>
+                </div>
               </div>
+              <Card className="space-y-4">
+                <h2 className="text-xl font-semibold text-ink-950">Emergency dispatch</h2>
+                <p className="text-sm text-ink-700">Need help fast? We prioritize urgent requests and confirm ETAs before dispatch.</p>
+                <PhoneLink asButton className="w-full">Call {SITE.phoneDisplay}</PhoneLink>
+              </Card>
             </div>
-            <Card className="space-y-4">
-              <h2 className="text-xl font-semibold text-ink-950">Emergency dispatch</h2>
-              <p className="text-sm text-ink-700">Need help fast? We prioritize urgent requests and confirm ETAs before dispatch.</p>
-              <PhoneLink asButton className="w-full">Call {SITE.phoneDisplay}</PhoneLink>
-            </Card>
-          </div>
-        </Container>
-      </Section>
+          </Container>
+        </Section>
+      </section>
 
       <Section>
         <Container>
@@ -104,15 +106,17 @@ export default function ServicesPage() {
         </Container>
       </Section>
 
-      <Section className="bg-slate-50" id="categories">
-        <Container>
-          <div className="space-y-12">
-            {servicesConfig.map((category) => (
-              <CategorySection key={category.slug} category={category} />
-            ))}
-          </div>
-        </Container>
-      </Section>
+      <section id="categories">
+        <Section className="bg-slate-50">
+          <Container>
+            <div className="space-y-12">
+              {servicesConfig.map((category) => (
+                <CategorySection key={category.slug} category={category} />
+              ))}
+            </div>
+          </Container>
+        </Section>
+      </section>
 
       <Section>
         <Container>

@@ -128,7 +128,8 @@ export default function LandingPage({ params }: { params: { slug: string } }) {
                 ))}
               </ul>
             </div>
-            <Card className="p-6" id="request">
+            <section id="request">
+              <Card className="p-6">
               <p className="text-sm font-semibold text-ink-950">Request service</p>
               <p className="mt-2 text-xs text-ink-700">Share a few details and we will confirm availability.</p>
               <div className="mt-4">
@@ -140,7 +141,8 @@ export default function LandingPage({ params }: { params: { slug: string } }) {
                   landingSlug={landing.slug}
                 />
               </div>
-            </Card>
+              </Card>
+            </section>
           </div>
           <div className="mt-8 grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
             <div className="relative aspect-[16/9] overflow-hidden rounded-3xl bg-slate-100 shadow-soft">

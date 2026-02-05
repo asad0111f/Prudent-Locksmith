@@ -1,16 +1,15 @@
 'use client';
 
-import type { AnchorHTMLAttributes, ReactNode } from 'react';
+import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from 'react';
 import { usePathname } from 'next/navigation';
 import clsx from 'clsx';
 import { SITE } from '@/lib/site';
 import { Button } from '@/components/ui/button';
 import { getPageSource, trackEvent, type AnalyticsEventName, type PageSource } from '@/lib/analytics';
 
-type PhoneLinkProps = {
+type CommonProps = {
   children?: ReactNode;
   className?: string;
-  asButton?: boolean;
   variant?: 'primary' | 'secondary';
   size?: 'md' | 'sm';
   eventName?: AnalyticsEventName;
@@ -19,7 +18,19 @@ type PhoneLinkProps = {
   source?: PageSource;
   slug?: string;
   variantKey?: 'control' | 'alt';
-} & Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>;
+};
+
+type PhoneLinkButtonProps = CommonProps &
+  Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'type'> & {
+    asButton: true;
+  };
+
+type PhoneLinkAnchorProps = CommonProps &
+  Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'href'> & {
+    asButton?: false;
+  };
+
+type PhoneLinkProps = PhoneLinkButtonProps | PhoneLinkAnchorProps;
 
 // Call tracking layering:
 // - Keep this single component as the phone-number renderer.
@@ -60,6 +71,8 @@ export function PhoneLink({
 
   // A/B testing hook: swap CTA labels/styles based on variantKey when running experiments.
   const resolvedClassName = clsx(className, variantKey === 'alt' ? '' : '');
+  const sharedClick = handleClick as unknown as React.MouseEventHandler<HTMLButtonElement> &
+    React.MouseEventHandler<HTMLAnchorElement>;
 
   if (asButton) {
     return (
@@ -68,8 +81,7 @@ export function PhoneLink({
         variant={variant}
         size={size}
         className={resolvedClassName}
-        onClick={handleClick}
-        {...props}
+        onClick={sharedClick}
       >
         {content}
       </Button>
@@ -77,7 +89,12 @@ export function PhoneLink({
   }
 
   return (
-    <a href={SITE.phoneHref} className={resolvedClassName} onClick={handleClick} {...props}>
+    <a
+      href={SITE.phoneHref}
+      className={resolvedClassName}
+      onClick={sharedClick}
+      {...(props as AnchorHTMLAttributes<HTMLAnchorElement>)}
+    >
       {content}
     </a>
   );

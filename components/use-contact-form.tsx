@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { usePathname, useSearchParams } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { getPageSource, trackEvent } from '@/lib/analytics';
 
 type Status = 'idle' | 'success' | 'error' | 'loading';
@@ -14,21 +14,22 @@ export function useContactForm({ onSuccess }: UseContactFormOptions = {}) {
   const [status, setStatus] = useState<Status>('idle');
   const [message, setMessage] = useState('');
   const pathname = usePathname();
-  const searchParams = useSearchParams();
   const timestampRef = useRef(Date.now().toString());
   const [pageUrl, setPageUrl] = useState('');
   const [storedAttribution, setStoredAttribution] = useState<Record<string, string>>({});
   const attributionKey = 'prudent_attribution';
+  const [queryString, setQueryString] = useState('');
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
       setPageUrl(window.location.href);
+      setQueryString(window.location.search || '');
     }
-  }, [pathname, searchParams]);
+  }, [pathname]);
 
   useEffect(() => {
     timestampRef.current = Date.now().toString();
-  }, [pathname, searchParams]);
+  }, [pathname]);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -43,8 +44,9 @@ export function useContactForm({ onSuccess }: UseContactFormOptions = {}) {
       'gbraid'
     ];
     const incoming: Record<string, string> = {};
+    const params = new URLSearchParams(queryString);
     keys.forEach((key) => {
-      const value = searchParams?.get(key) || '';
+      const value = params.get(key) || '';
       if (value) {
         incoming[key] = value;
       }
@@ -67,10 +69,11 @@ export function useContactForm({ onSuccess }: UseContactFormOptions = {}) {
     } catch {
       setStoredAttribution({});
     }
-  }, [searchParams]);
+  }, [queryString]);
 
   const utm = useMemo(() => {
-    const get = (key: string) => searchParams?.get(key) || storedAttribution[key] || '';
+    const params = new URLSearchParams(queryString);
+    const get = (key: string) => params.get(key) || storedAttribution[key] || '';
     return {
       source: get('utm_source'),
       medium: get('utm_medium'),
@@ -81,7 +84,7 @@ export function useContactForm({ onSuccess }: UseContactFormOptions = {}) {
       wbraid: get('wbraid'),
       gbraid: get('gbraid')
     };
-  }, [searchParams, storedAttribution]);
+  }, [queryString, storedAttribution]);
 
   function clearStored(storageKey: string) {
     try {
