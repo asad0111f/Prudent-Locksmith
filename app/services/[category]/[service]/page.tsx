@@ -197,7 +197,7 @@ export default function ServicePage({ params }: { params: { category: string; se
       </Section>
 
       <div className="h-px w-full bg-section-divider" aria-hidden="true" />
-      <Section className="bg-slate-50">
+      <Section className="bg-surface-muted">
         <Container>
           <div className="flex items-center justify-between">
             <h2 className="text-2xl font-semibold text-ink-950">Related services</h2>
@@ -215,7 +215,7 @@ export default function ServicePage({ params }: { params: { category: string; se
                     className="object-cover transition duration-300 group-hover:scale-[1.03]"
                   />
                 </div>
-                <h3 className="mt-4 text-lg font-semibold text-ink-950">{item.name}</h3>
+                <h3 className="mt-4 text-lg font-semibold text-ink-950">{item.shortLabel}</h3>
                 <p className="mt-2 text-sm text-ink-700">{item.shortDescription}</p>
                 <Link href={getServiceUrl(item.category.slug, item.slug)} className="mt-4 inline-flex text-sm font-semibold text-teal-700">
                   View details
@@ -229,7 +229,7 @@ export default function ServicePage({ params }: { params: { category: string; se
       <div className="h-px w-full bg-section-divider" aria-hidden="true" />
       <Section>
         <Container>
-          <div className="rounded-2xl border border-slate-100 bg-white p-6 shadow-soft">
+          <div className="surface-panel p-6">
             <h2 className="text-xl font-semibold text-ink-950">Serving Hamilton & nearby</h2>
             <p className="mt-2 text-sm text-ink-700">
               We provide {service.name.toLowerCase()} across Hamilton, ON and surrounding areas.

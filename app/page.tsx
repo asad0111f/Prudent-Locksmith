@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { RequestServiceTrigger } from '@/components/request-service-trigger';
+import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Container } from '@/components/ui/container';
 import { Section } from '@/components/ui/section';
@@ -145,7 +146,7 @@ export default function HomePage() {
       </Section>
 
       <div className="h-px w-full bg-section-divider" aria-hidden="true" />
-      <Section className="bg-slate-50">
+      <Section className="bg-surface-muted">
         <Container>
           <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
             <div>
@@ -190,9 +191,9 @@ export default function HomePage() {
               <Card>
                 <h3 className="text-lg font-semibold text-ink-950">Prefer to schedule?</h3>
                 <p className="mt-2 text-sm text-ink-700">Request service online and we will confirm timing and pricing.</p>
-                <Link href="/contact" className="mt-4 inline-flex w-full items-center justify-center rounded-full border border-slate-200 px-6 py-3 text-sm font-semibold text-ink-950 transition hover:border-slate-300 hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 focus-visible:ring-offset-2">
+                <Button href="/contact" variant="secondary" className="mt-4 w-full">
                   Request Service
-                </Link>
+                </Button>
               </Card>
             </div>
           </div>

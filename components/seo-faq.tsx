@@ -31,7 +31,7 @@ export function SeoFaq({
         {items.map((faq) => (
           <Card key={faq.q} className="p-0">
             <details className="group p-6">
-              <summary className="cursor-pointer list-none text-sm font-semibold text-ink-950 transition-colors group-open:text-ink-950">
+              <summary className="cursor-pointer list-none text-sm font-semibold text-ink-950 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 focus-visible:ring-offset-2 group-open:text-ink-950">
                 {faq.q}
               </summary>
               <div className="grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-out group-open:grid-rows-[1fr]">

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Container } from '@/components/ui/container';
 import { Section } from '@/components/ui/section';
@@ -59,52 +60,52 @@ export default function CityPage({ params }: { params: { city: string } }) {
   return (
     <>
       <Section className="pt-8">
-        <Container>
-          <Breadcrumbs
-            baseUrl={SITE.baseUrl}
-            items={[
-              { label: 'Home', href: '/' },
-              { label: 'Service Areas', href: '/service-areas' },
-              { label: city.name, href: `/service-areas/${city.slug}` }
-            ]}
-          />
-          <div className="mt-6 grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
-            <div className="space-y-6 motion-safe:animate-fade-up">
-              <Badge>Local Service Area</Badge>
-              <h1 className="text-4xl font-semibold text-ink-950">{city.name} locksmith & garage door service</h1>
-              <p className="text-lg text-ink-700">{city.description}</p>
-              <div className="flex flex-wrap gap-3">
-                <PhoneLink asButton city={city.name}>Call Now</PhoneLink>
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center justify-center rounded-full border border-slate-200 px-6 py-3 text-sm font-semibold text-ink-950 transition hover:border-slate-300 hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 focus-visible:ring-offset-2"
-                >
-                  Request Service
-                </Link>
+        <div className="relative">
+          <div className="pointer-events-none absolute inset-0 -z-10 bg-hero-gradient" aria-hidden="true" />
+          <Container>
+            <Breadcrumbs
+              baseUrl={SITE.baseUrl}
+              items={[
+                { label: 'Home', href: '/' },
+                { label: 'Service Areas', href: '/service-areas' },
+                { label: city.name, href: `/service-areas/${city.slug}` }
+              ]}
+            />
+            <div className="mt-6 grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
+              <div className="space-y-6 motion-safe:animate-fade-up">
+                <Badge>Local Service Area</Badge>
+                <h1 className="text-4xl font-semibold text-ink-950">{city.name} locksmith & garage door service</h1>
+                <p className="text-lg text-ink-700">{city.description}</p>
+                <div className="flex flex-wrap gap-3">
+                  <PhoneLink asButton city={city.name}>Call Now</PhoneLink>
+                  <Button href="/contact" variant="secondary">Request Service</Button>
+                </div>
+                <ul className="grid gap-2 text-sm text-ink-700">
+                  <li>• Fast dispatch and ETA confirmation</li>
+                  <li>• Upfront pricing before work begins</li>
+                  <li>• Residential, automotive, and commercial support</li>
+                </ul>
               </div>
-              <ul className="grid gap-2 text-sm text-ink-700">
-                <li>• Fast dispatch and ETA confirmation</li>
-                <li>• Upfront pricing before work begins</li>
-                <li>• Residential, automotive, and commercial support</li>
-              </ul>
+              <Card>
+                <h2 className="text-lg font-semibold text-ink-950">Need help today?</h2>
+                <p className="mt-2 text-sm text-ink-700">Call for immediate availability in {city.name}.</p>
+                <PhoneLink asButton className="mt-4 w-full" city={city.name}>
+                  Call {SITE.phoneDisplay}
+                </PhoneLink>
+              </Card>
             </div>
-            <Card>
-              <h2 className="text-lg font-semibold text-ink-950">Need help today?</h2>
-              <p className="mt-2 text-sm text-ink-700">Call for immediate availability in {city.name}.</p>
-              <PhoneLink asButton className="mt-4 w-full" city={city.name}>
-                Call {SITE.phoneDisplay}
-              </PhoneLink>
-            </Card>
-          </div>
-        </Container>
+          </Container>
+        </div>
       </Section>
 
+      <div className="h-px w-full bg-section-divider" aria-hidden="true" />
       <Section>
         <Container>
           <TrustStrip />
         </Container>
       </Section>
 
+      <div className="h-px w-full bg-section-divider" aria-hidden="true" />
       <Section>
         <Container>
           <div className="flex items-center justify-between">
@@ -114,7 +115,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
           <div className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {services.map((service) => (
               <Card key={service.id} className="group">
-                <h3 className="text-lg font-semibold text-ink-950">{service.name}</h3>
+                <h3 className="text-lg font-semibold text-ink-950">{service.shortLabel}</h3>
                 <p className="mt-2 text-sm text-ink-700">{service.shortDescription}</p>
                 <Link href={getServiceUrl(service.category.slug, service.slug)} className="mt-4 inline-flex text-sm font-semibold text-teal-700">
                   View details
@@ -125,7 +126,8 @@ export default function CityPage({ params }: { params: { city: string } }) {
         </Container>
       </Section>
 
-      <Section>
+      <div className="h-px w-full bg-section-divider" aria-hidden="true" />
+      <Section className="bg-surface-muted">
         <Container>
           <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
             <SeoFaq title={`FAQs for ${city.name}`} items={city.faqs} includeJsonLd />
@@ -134,6 +136,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
         </Container>
       </Section>
 
+      <div className="h-px w-full bg-section-divider" aria-hidden="true" />
       <Section>
         <Container>
           <InternalLinks type="city" currentCity={city.slug} />

@@ -3,6 +3,7 @@ export type ServiceFaq = { q: string; a: string };
 export type ServiceItem = {
   id: string;
   name: string;
+  shortLabel: string;
   slug: string;
   shortDescription: string;
   description: string;
@@ -41,6 +42,7 @@ const baseCategories = [
     services: [
       {
         name: 'Garage door not opening or stuck',
+        shortLabel: 'Garage door stuck',
         slug: 'garage-door-not-opening-or-stuck',
         shortDescription: 'Rapid diagnostics when your garage door is stuck closed or halfway.',
         description: 'We restore safe operation quickly when your garage door refuses to open or gets stuck mid-cycle.',
@@ -81,6 +83,7 @@ const baseCategories = [
       },
       {
         name: 'Broken garage door spring repair',
+        shortLabel: 'Spring repair',
         slug: 'broken-garage-door-spring-repair',
         shortDescription: 'Safe spring replacement with correct tension and balance.',
         description: 'Replace snapped or worn springs to restore smooth, safe garage door operation.',
@@ -120,6 +123,7 @@ const baseCategories = [
       },
       {
         name: 'Garage door cable repair or replacement',
+        shortLabel: 'Cable repair',
         slug: 'garage-door-cable-repair-or-replacement',
         shortDescription: 'Repair frayed cables to prevent door imbalance and failure.',
         description: 'Restore safe lifting power with cable repair or replacement when wear is visible.',
@@ -146,6 +150,7 @@ const baseCategories = [
       },
       {
         name: 'Track repair or realignment',
+        shortLabel: 'Track alignment',
         slug: 'track-repair-or-realignment',
         shortDescription: 'Get doors running straight with precision track alignment.',
         description: 'Repair bent tracks and realign hardware so your door runs smoothly and quietly.',
@@ -172,6 +177,7 @@ const baseCategories = [
       },
       {
         name: 'Door alignment and safety inspection',
+        shortLabel: 'Safety inspection',
         slug: 'door-alignment-and-safety-inspection',
         shortDescription: 'Full safety check with balance and alignment adjustments.',
         description: 'Ensure your garage door is balanced, aligned, and safe for daily use.',
@@ -205,6 +211,7 @@ const baseCategories = [
     services: [
       {
         name: 'New garage door opener installation',
+        shortLabel: 'Opener install',
         slug: 'new-garage-door-opener-installation',
         shortDescription: 'Professional opener installation with setup and testing.',
         description: 'Install a new garage door opener with safe mounting, programming, and full safety checks.',
@@ -231,6 +238,7 @@ const baseCategories = [
       },
       {
         name: 'Wi-Fi / app-enabled opener upgrades',
+        shortLabel: 'Smart opener upgrade',
         slug: 'wi-fi-app-enabled-opener-upgrades',
         shortDescription: 'Upgrade to smart control with secure mobile access.',
         description: 'Add smart features for remote access, alerts, and controlled entry to your garage.',
@@ -257,6 +265,7 @@ const baseCategories = [
       },
       {
         name: 'Belt-drive garage door openers',
+        shortLabel: 'Belt-drive opener',
         slug: 'belt-drive-garage-door-openers',
         shortDescription: 'Quiet, smooth belt-drive opener installation and service.',
         description: 'Install or service belt-drive openers for quieter, smoother garage access.',
@@ -283,6 +292,7 @@ const baseCategories = [
       },
       {
         name: 'Opener belt replacement',
+        shortLabel: 'Belt replacement',
         slug: 'opener-belt-replacement',
         shortDescription: 'Replace worn belts to restore smooth opener performance.',
         description: 'Fix slipping or broken belts to keep your opener running quietly and reliably.',
@@ -309,6 +319,7 @@ const baseCategories = [
       },
       {
         name: 'Remote and wall control programming',
+        shortLabel: 'Remote programming',
         slug: 'remote-and-wall-control-programming',
         shortDescription: 'Program remotes, keypads, and wall controls quickly.',
         description: 'Set up new remotes and wall controls for secure, reliable garage access.',
@@ -342,6 +353,7 @@ const baseCategories = [
     services: [
       {
         name: 'Home and apartment lockouts',
+        shortLabel: 'Lockouts',
         slug: 'home-and-apartment-lockouts',
         shortDescription: 'Quick, damage-minimized entry for residential lockouts.',
         description: 'Regain access quickly with safe entry methods and respectful service.',
@@ -368,6 +380,7 @@ const baseCategories = [
       },
       {
         name: 'Lock repair and replacement',
+        shortLabel: 'Lock repair',
         slug: 'lock-repair-and-replacement',
         shortDescription: 'Fix worn locks or replace them with stronger hardware.',
         description: 'Repair or replace residential locks to improve security and smooth operation.',
@@ -394,6 +407,7 @@ const baseCategories = [
       },
       {
         name: 'Lock cylinder replacement',
+        shortLabel: 'Cylinder replacement',
         slug: 'lock-cylinder-replacement',
         shortDescription: 'Replace worn cylinders for smoother, safer access.',
         description: 'Install new lock cylinders to improve reliability and security without replacing the full lock.',
@@ -420,6 +434,7 @@ const baseCategories = [
       },
       {
         name: 'Rekeying services',
+        shortLabel: 'Rekeying',
         slug: 'rekeying-services',
         shortDescription: 'Change key access without replacing the full lock.',
         description: 'Rekey your locks to control access after a move, staffing change, or lost keys.',
@@ -453,6 +468,7 @@ const baseCategories = [
     services: [
       {
         name: 'Car lockouts',
+        shortLabel: 'Car lockouts',
         slug: 'car-lockouts',
         shortDescription: 'Fast vehicle entry with careful, non-damaging methods.',
         description: 'Locked out of your car? We provide quick, safe entry wherever you are.',
@@ -479,6 +495,7 @@ const baseCategories = [
       },
       {
         name: 'Mobile vehicle entry service',
+        shortLabel: 'Vehicle entry',
         slug: 'mobile-vehicle-entry-service',
         shortDescription: 'On-location vehicle access with fast dispatch.',
         description: 'Mobile service brings professional vehicle entry to your location quickly.',
@@ -507,6 +524,7 @@ const baseCategories = [
     services: [
       {
         name: 'Storefront lock repair',
+        shortLabel: 'Storefront repair',
         slug: 'storefront-lock-repair',
         shortDescription: 'Keep storefronts secure and accessible for customers.',
         description: 'Repair storefront locks quickly to protect business security and access.',
@@ -533,6 +551,7 @@ const baseCategories = [
       },
       {
         name: 'Mortise lock service',
+        shortLabel: 'Mortise service',
         slug: 'mortise-lock-service',
         shortDescription: 'Service and repair for commercial mortise locks.',
         description: 'Maintain or repair mortise locks for reliable commercial security.',
@@ -559,6 +578,7 @@ const baseCategories = [
       },
       {
         name: 'Mortise cylinder replacement',
+        shortLabel: 'Mortise cylinder',
         slug: 'mortise-cylinder-replacement',
         shortDescription: 'Replace worn mortise cylinders to improve security.',
         description: 'Install new mortise cylinders to restore secure access control.',
@@ -585,6 +605,7 @@ const baseCategories = [
       },
       {
         name: 'Commercial door lock troubleshooting',
+        shortLabel: 'Lock troubleshooting',
         slug: 'commercial-door-lock-troubleshooting',
         shortDescription: 'Diagnosis and repair for commercial door lock issues.',
         description: 'Resolve complex lock problems with on-site troubleshooting and repairs.',

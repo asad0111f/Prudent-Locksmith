@@ -44,7 +44,7 @@ export function getInternalLinks({
     seed
   ).map((service) => ({
     href: getServiceUrl(service.category.slug, service.slug),
-    label: service.name
+    label: service.shortLabel
   }));
 
   const cityLinks = pickFrom(

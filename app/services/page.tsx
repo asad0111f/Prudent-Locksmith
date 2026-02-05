@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Container } from '@/components/ui/container';
 import { Section } from '@/components/ui/section';
@@ -68,12 +69,7 @@ export default function ServicesPage() {
                 </Reveal>
                 <Reveal as="div" delay={180} className="flex flex-wrap gap-3">
                   <PhoneLink asButton>Call Now</PhoneLink>
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center justify-center rounded-full border border-slate-200 px-6 py-3 text-sm font-semibold text-ink-950 transition hover:border-slate-300 hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 focus-visible:ring-offset-2"
-                  >
-                    Request Service
-                  </Link>
+                  <Button href="/contact" variant="secondary">Request Service</Button>
                 </Reveal>
               </div>
                 <Card className="space-y-4">
@@ -105,7 +101,7 @@ export default function ServicesPage() {
             {emergencyServices.map((service) => (
               <Reveal key={service.id} as="div">
                 <Card className="group">
-                  <h3 className="text-lg font-semibold text-ink-950">{service.name}</h3>
+                  <h3 className="text-lg font-semibold text-ink-950">{service.shortLabel}</h3>
                   <p className="mt-2 text-sm text-ink-700">{service.shortDescription}</p>
                   <div className="mt-4 flex flex-wrap items-center gap-3">
                     <Link href={`/services/${service.category.slug}/${service.slug}`} className="text-sm font-semibold text-teal-700">
@@ -122,7 +118,7 @@ export default function ServicesPage() {
 
       <section id="categories">
         <div className="h-px w-full bg-section-divider" aria-hidden="true" />
-        <Section className="bg-slate-50">
+        <Section className="bg-surface-muted">
           <Container>
             <div className="space-y-12">
               {servicesConfig.map((category) => (

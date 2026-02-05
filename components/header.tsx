@@ -11,21 +11,65 @@ import { getEmergencyServices, servicesConfig } from '@/lib/services';
 export function Header() {
   const pathname = usePathname();
   const servicesActive = pathname?.startsWith('/services') ?? false;
+  const isActive = (path: string) => {
+    if (path === '/') return pathname === '/';
+    return pathname?.startsWith(path) ?? false;
+  };
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-slate-200/70 bg-header-gradient backdrop-blur">
       <Container>
         <div className="flex items-center justify-between py-4">
           <Link href="/" className="text-xl font-semibold text-ink-950">
             Prudent
           </Link>
           <nav className="hidden items-center gap-6 text-sm font-medium text-ink-700 md:flex">
-            <Link href="/" className="transition hover:text-ink-950">Home</Link>
-            <Link href="/emergency" className="transition hover:text-ink-950">Emergency</Link>
+            <Link
+              href="/"
+              className={clsx(
+                'rounded-full px-3 py-1 transition hover:text-ink-950',
+                isActive('/') && 'bg-slate-100/70 text-ink-950'
+              )}
+            >
+              Home
+            </Link>
+            <Link
+              href="/emergency"
+              className={clsx(
+                'rounded-full px-3 py-1 transition hover:text-ink-950',
+                isActive('/emergency') && 'bg-slate-100/70 text-ink-950'
+              )}
+            >
+              Emergency
+            </Link>
             <ServicesMenu active={servicesActive} />
-            <Link href="/service-areas" className="transition hover:text-ink-950">Service Areas</Link>
-            <Link href="/about" className="transition hover:text-ink-950">About</Link>
-            <Link href="/contact" className="transition hover:text-ink-950">Contact</Link>
+            <Link
+              href="/service-areas"
+              className={clsx(
+                'rounded-full px-3 py-1 transition hover:text-ink-950',
+                isActive('/service-areas') && 'bg-slate-100/70 text-ink-950'
+              )}
+            >
+              Service Areas
+            </Link>
+            <Link
+              href="/about"
+              className={clsx(
+                'rounded-full px-3 py-1 transition hover:text-ink-950',
+                isActive('/about') && 'bg-slate-100/70 text-ink-950'
+              )}
+            >
+              About
+            </Link>
+            <Link
+              href="/contact"
+              className={clsx(
+                'rounded-full px-3 py-1 transition hover:text-ink-950',
+                isActive('/contact') && 'bg-slate-100/70 text-ink-950'
+              )}
+            >
+              Contact
+            </Link>
           </nav>
           <div className="hidden md:block">
             <PhoneLink asButton>Call Now</PhoneLink>
@@ -150,7 +194,8 @@ function ServicesMenu({ active }: { active: boolean }) {
               <div key={category.slug} className="border-l border-slate-100 pl-4">
                 <p className="text-xs font-semibold uppercase tracking-wide text-teal-700">{category.label}</p>
                 <p className="mt-2 text-sm font-semibold text-ink-950">{category.name}</p>
-                <ul className="mt-3 space-y-2 text-sm text-ink-700">
+                <div className="mt-3 h-px w-10 bg-slate-200/80" aria-hidden="true" />
+                <ul className="mt-4 space-y-3 text-sm text-ink-700">
                   {category.services.map((service) => {
                     const href = `/services/${category.slug}/${service.slug}`;
                     const isActive = pathname === href;
@@ -159,14 +204,14 @@ function ServicesMenu({ active }: { active: boolean }) {
                         <Link
                           href={href}
                           className={clsx(
-                            'relative block rounded-lg px-3 py-2 transition hover:bg-slate-50 hover:text-ink-950',
+                            'relative block truncate rounded-lg px-3 py-2 transition hover:bg-slate-50 hover:text-ink-950',
                             isActive && 'bg-teal-50 text-teal-700 font-semibold'
                           )}
                         >
                           {isActive ? (
                             <span className="absolute left-0 top-1/2 h-4 w-1 -translate-y-1/2 rounded-full bg-teal-600" aria-hidden="true" />
                           ) : null}
-                          {service.name}
+                          {service.shortLabel}
                         </Link>
                       </li>
                     );
@@ -177,7 +222,7 @@ function ServicesMenu({ active }: { active: boolean }) {
             <div className="mega-top-gradient rounded-2xl border border-rose-100 p-4">
               <p className="text-xs font-semibold uppercase tracking-wide text-rose-600">Top Services</p>
               <p className="mt-2 text-sm font-semibold text-ink-950">Emergency priority</p>
-              <ul className="mt-3 space-y-2 text-sm text-ink-700">
+              <ul className="mt-4 space-y-3 text-sm text-ink-700">
                 {topServices.map((service) => {
                   const href = `/services/${service.category.slug}/${service.slug}`;
                   const isActive = pathname === href;
@@ -186,14 +231,14 @@ function ServicesMenu({ active }: { active: boolean }) {
                       <Link
                         href={href}
                         className={clsx(
-                          'relative block rounded-lg px-3 py-2 transition hover:bg-white/80 hover:text-ink-950',
+                          'relative block truncate rounded-lg px-3 py-2 transition hover:bg-white/80 hover:text-ink-950',
                           isActive && 'bg-white text-rose-700 font-semibold'
                         )}
                       >
                         {isActive ? (
                           <span className="absolute left-0 top-1/2 h-4 w-1 -translate-y-1/2 rounded-full bg-rose-500" aria-hidden="true" />
                         ) : null}
-                        {service.name}
+                        {service.shortLabel}
                       </Link>
                     </li>
                   );
@@ -211,6 +256,12 @@ function ServicesMenu({ active }: { active: boolean }) {
 }
 
 function MobileMenu() {
+  const pathname = usePathname();
+  const isActive = (path: string) => {
+    if (path === '/') return pathname === '/';
+    return pathname?.startsWith(path) ?? false;
+  };
+
   return (
     <details className="relative">
       <summary className="cursor-pointer list-none rounded-md border border-slate-200 px-3 py-2 text-sm font-semibold text-ink-950">
@@ -218,8 +269,18 @@ function MobileMenu() {
       </summary>
       <div className="absolute right-0 mt-2 w-72 rounded-lg border border-slate-200 bg-white p-4 shadow-soft">
         <nav className="flex flex-col gap-3 text-sm font-medium">
-          <Link href="/" className="text-ink-700 hover:text-ink-950">Home</Link>
-          <Link href="/emergency" className="text-ink-700 hover:text-ink-950">Emergency</Link>
+          <Link
+            href="/"
+            className={clsx('rounded-md px-2 py-1 text-ink-700 hover:text-ink-950', isActive('/') && 'bg-slate-100 text-ink-950')}
+          >
+            Home
+          </Link>
+          <Link
+            href="/emergency"
+            className={clsx('rounded-md px-2 py-1 text-ink-700 hover:text-ink-950', isActive('/emergency') && 'bg-slate-100 text-ink-950')}
+          >
+            Emergency
+          </Link>
           <details>
             <summary className="cursor-pointer list-none text-ink-700">Services</summary>
             <div className="mt-3 grid gap-3">
@@ -230,7 +291,7 @@ function MobileMenu() {
                     {category.services.map((service) => (
                       <li key={service.id}>
                         <Link href={`/services/${category.slug}/${service.slug}`} className="transition hover:text-ink-950">
-                          {service.name}
+                          {service.shortLabel}
                         </Link>
                       </li>
                     ))}
@@ -239,9 +300,24 @@ function MobileMenu() {
               ))}
             </div>
           </details>
-          <Link href="/service-areas" className="text-ink-700 hover:text-ink-950">Service Areas</Link>
-          <Link href="/about" className="text-ink-700 hover:text-ink-950">About</Link>
-          <Link href="/contact" className="text-ink-700 hover:text-ink-950">Contact</Link>
+          <Link
+            href="/service-areas"
+            className={clsx('rounded-md px-2 py-1 text-ink-700 hover:text-ink-950', isActive('/service-areas') && 'bg-slate-100 text-ink-950')}
+          >
+            Service Areas
+          </Link>
+          <Link
+            href="/about"
+            className={clsx('rounded-md px-2 py-1 text-ink-700 hover:text-ink-950', isActive('/about') && 'bg-slate-100 text-ink-950')}
+          >
+            About
+          </Link>
+          <Link
+            href="/contact"
+            className={clsx('rounded-md px-2 py-1 text-ink-700 hover:text-ink-950', isActive('/contact') && 'bg-slate-100 text-ink-950')}
+          >
+            Contact
+          </Link>
         </nav>
       </div>
     </details>

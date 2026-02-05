@@ -23,6 +23,10 @@ a {
 }
 
 /* Gradient tokens */
+.bg-header-gradient {
+  background: linear-gradient(180deg, rgba(248, 250, 252, 0.95), rgba(255, 255, 255, 0.92));
+}
+
 .bg-hero-gradient {
   background: radial-gradient(1200px 600px at 10% 10%, rgba(14, 143, 139, 0.12), rgba(14, 143, 139, 0) 60%),
     radial-gradient(900px 500px at 80% 0%, rgba(15, 23, 42, 0.08), rgba(15, 23, 42, 0) 60%);
@@ -36,6 +40,18 @@ a {
   background: linear-gradient(90deg, rgba(15, 23, 42, 0) 0%, rgba(15, 23, 42, 0.08) 50%, rgba(15, 23, 42, 0) 100%);
 }
 
+.bg-surface-muted {
+  background: linear-gradient(180deg, rgba(248, 250, 252, 0.9), rgba(241, 245, 249, 0.6));
+}
+
+.bg-dark-gradient {
+  background: linear-gradient(180deg, rgba(9, 13, 18, 1), rgba(7, 10, 13, 0.98));
+}
+
+.surface-panel {
+  @apply rounded-2xl border border-slate-200/80 bg-white/95 shadow-soft;
+}
+
 .card-gradient-hover {
   position: relative;
   overflow: hidden;
@@ -47,7 +63,7 @@ a {
   inset: 0;
   pointer-events: none;
   opacity: 0;
-  background: linear-gradient(135deg, rgba(13, 148, 136, 0.08), rgba(15, 23, 42, 0.04));
+  background: linear-gradient(135deg, rgba(13, 148, 136, 0.08), rgba(15, 23, 42, 0.05));
   transition: opacity var(--motion-normal) var(--motion-ease);
 }
 
@@ -57,7 +73,7 @@ a {
 }
 
 .mega-menu-gradient {
-  background: linear-gradient(180deg, rgba(248, 250, 252, 0.98), rgba(241, 245, 249, 0.96));
+  background: linear-gradient(180deg, rgba(248, 250, 252, 0.98), rgba(237, 242, 247, 0.96));
 }
 
 .mega-top-gradient {

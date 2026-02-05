@@ -14,7 +14,7 @@ export function Textarea({ label, className, id, ...props }: TextareaProps) {
       <textarea
         id={textareaId}
         className={clsx(
-          'w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-ink-900 shadow-sm outline-none transition focus:border-teal-600 focus:ring-2 focus:ring-teal-100',
+          'w-full rounded-xl border border-slate-200/90 bg-white/95 px-4 py-3 text-sm text-ink-900 shadow-sm outline-none transition focus:border-teal-600 focus:ring-2 focus:ring-teal-200/60',
           className
         )}
         {...props}

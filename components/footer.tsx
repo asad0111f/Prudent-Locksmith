@@ -5,7 +5,7 @@ import { PhoneLink } from '@/components/phone-link';
 
 export function Footer() {
   return (
-    <footer className="footer-gradient border-t border-slate-900/10 text-slate-100">
+    <footer className="footer-gradient border-t border-slate-900/20 text-slate-100">
       <Container>
         <div className="grid gap-8 py-12 md:grid-cols-4">
           <div>

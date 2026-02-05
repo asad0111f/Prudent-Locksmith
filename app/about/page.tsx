@@ -26,15 +26,19 @@ export default function AboutPage() {
   return (
     <>
       <Section className="pt-12">
-        <Container>
-          <h1 className="text-4xl font-semibold text-ink-950">Trust-first service for homes and businesses</h1>
-          <p className="mt-4 max-w-2xl text-lg text-ink-700">
-            Prudent Locksmith and Garage Services is built for calm, dependable help. We show up with clear communication,
-            professional tools, and respect for your property in Hamilton, ON and surrounding areas.
-          </p>
-        </Container>
+        <div className="relative">
+          <div className="pointer-events-none absolute inset-0 -z-10 bg-hero-gradient" aria-hidden="true" />
+          <Container>
+            <h1 className="text-4xl font-semibold text-ink-950">Trust-first service for homes and businesses</h1>
+            <p className="mt-4 max-w-2xl text-lg text-ink-700">
+              Prudent Locksmith and Garage Services is built for calm, dependable help. We show up with clear communication,
+              professional tools, and respect for your property in Hamilton, ON and surrounding areas.
+            </p>
+          </Container>
+        </div>
       </Section>
 
+      <div className="h-px w-full bg-section-divider" aria-hidden="true" />
       <Section>
         <Container>
           <div className="grid gap-6 md:grid-cols-3">
@@ -61,7 +65,8 @@ export default function AboutPage() {
         </Container>
       </Section>
 
-      <Section className="bg-slate-50">
+      <div className="h-px w-full bg-section-divider" aria-hidden="true" />
+      <Section className="bg-surface-muted">
         <Container>
           <div className="grid gap-8 md:grid-cols-2">
             <Card>
@@ -84,7 +89,8 @@ export default function AboutPage() {
         </Container>
       </Section>
 
-      <Section className="bg-ink-950 text-white">
+      <div className="h-px w-full bg-section-divider" aria-hidden="true" />
+      <Section className="bg-dark-gradient text-white">
         <Container>
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div>

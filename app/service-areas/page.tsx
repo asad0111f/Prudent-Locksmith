@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Container } from '@/components/ui/container';
 import { Section } from '@/components/ui/section';
@@ -29,33 +30,33 @@ export default function ServiceAreasPage() {
   return (
     <>
       <Section className="pt-12">
-        <Container>
-          <div className="space-y-4">
-            <Badge>Local Service Coverage</Badge>
-            <h1 className="text-4xl font-semibold text-ink-950">Service areas we cover</h1>
-            <p className="max-w-2xl text-lg text-ink-700">
-              We dispatch across Hamilton, ON and nearby cities with fast response and clear pricing. Choose your area to see
-              local service details and top services.
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <PhoneLink asButton>Call Now</PhoneLink>
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center rounded-full border border-slate-200 px-6 py-3 text-sm font-semibold text-ink-950 transition hover:border-slate-300 hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 focus-visible:ring-offset-2"
-              >
-                Request Service
-              </Link>
+        <div className="relative">
+          <div className="pointer-events-none absolute inset-0 -z-10 bg-hero-gradient" aria-hidden="true" />
+          <Container>
+            <div className="space-y-4">
+              <Badge>Local Service Coverage</Badge>
+              <h1 className="text-4xl font-semibold text-ink-950">Service areas we cover</h1>
+              <p className="max-w-2xl text-lg text-ink-700">
+                We dispatch across Hamilton, ON and nearby cities with fast response and clear pricing. Choose your area to see
+                local service details and top services.
+              </p>
+              <div className="flex flex-wrap gap-3">
+                <PhoneLink asButton>Call Now</PhoneLink>
+                <Button href="/contact" variant="secondary">Request Service</Button>
+              </div>
             </div>
-          </div>
-        </Container>
+          </Container>
+        </div>
       </Section>
 
-      <Section>
+      <div className="h-px w-full bg-section-divider" aria-hidden="true" />
+      <Section className="bg-surface-muted">
         <Container>
           <TrustStrip />
         </Container>
       </Section>
 
+      <div className="h-px w-full bg-section-divider" aria-hidden="true" />
       <Section>
         <Container>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">

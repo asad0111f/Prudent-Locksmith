@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Container } from '@/components/ui/container';
 import { Section } from '@/components/ui/section';
@@ -78,12 +79,7 @@ export default function EmergencyPage() {
               </Reveal>
               <Reveal as="div" delay={180} className="flex flex-wrap gap-3">
                 <PhoneLink asButton eventName="emergency_cta_click">Call Now</PhoneLink>
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center justify-center rounded-full border border-slate-200 px-6 py-3 text-sm font-semibold text-ink-950 transition hover:border-slate-300 hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 focus-visible:ring-offset-2"
-                >
-                  Request Service
-                </Link>
+                <Button href="/contact" variant="secondary">Request Service</Button>
               </Reveal>
               <Reveal as="ul" delay={220} className="grid gap-2 text-sm text-ink-700">
                 <li>• Fast response and ETA confirmation</li>
@@ -117,7 +113,7 @@ export default function EmergencyPage() {
           <div className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             {urgentServices.map((service) => (
               <Card key={service.id} className="group">
-                <h3 className="text-lg font-semibold text-ink-950">{service.name}</h3>
+                <h3 className="text-lg font-semibold text-ink-950">{service.shortLabel}</h3>
                 <p className="mt-2 text-sm text-ink-700">{service.shortDescription}</p>
                 <Link href={`/services/${service.category.slug}/${service.slug}`} className="mt-4 inline-flex text-sm font-semibold text-teal-700">
                   View details

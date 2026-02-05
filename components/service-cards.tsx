@@ -20,7 +20,7 @@ export function ServiceCard({ service, index = 0 }: { service: ServiceItem; inde
           />
         </div>
         <div className="mt-4 flex items-center justify-between">
-          <h3 className="text-lg font-semibold text-ink-950">{service.name}</h3>
+          <h3 className="text-lg font-semibold text-ink-950">{service.shortLabel}</h3>
           {service.urgent ? <Badge className="bg-rose-50 text-rose-700">Emergency</Badge> : null}
         </div>
         <p className="mt-2 text-sm text-ink-700">{service.shortDescription}</p>

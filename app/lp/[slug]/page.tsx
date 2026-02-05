@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Container } from '@/components/ui/container';
 import { Section } from '@/components/ui/section';
@@ -126,12 +127,7 @@ export default function LandingPage({ params }: { params: { slug: string } }) {
                 <PhoneLink asButton source="landing" serviceName={primaryService.name} city={landing.city} slug={landing.slug}>
                   Call Now
                 </PhoneLink>
-                <Link
-                  href="#request"
-                  className="inline-flex items-center justify-center rounded-full border border-slate-200 px-6 py-3 text-sm font-semibold text-ink-950 transition hover:border-slate-300 hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 focus-visible:ring-offset-2"
-                >
-                  Request Service
-                </Link>
+                <Button href="#request" variant="secondary">Request Service</Button>
               </Reveal>
               <Reveal as="ul" delay={220} className="grid gap-2 text-sm text-ink-700">
                 {landing.benefits.map((benefit) => (
@@ -232,7 +228,7 @@ export default function LandingPage({ params }: { params: { slug: string } }) {
           <div className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {relatedServices.map((service) => (
               <Card key={service.id} className="group">
-                <h3 className="text-lg font-semibold text-ink-950">{service.name}</h3>
+                <h3 className="text-lg font-semibold text-ink-950">{service.shortLabel}</h3>
                 <p className="mt-2 text-sm text-ink-700">{service.shortDescription}</p>
                 <Link href={getServiceUrl(service.category.slug, service.slug)} className="mt-4 inline-flex text-sm font-semibold text-teal-700">
                   View details
@@ -250,7 +246,7 @@ export default function LandingPage({ params }: { params: { slug: string } }) {
         </Container>
       </Section>
 
-      <Section className="bg-ink-950 text-white">
+      <Section className="bg-dark-gradient text-white">
         <Container>
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div>
