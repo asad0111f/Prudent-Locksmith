@@ -1,0 +1,30 @@
+'use client';
+
+import { useRequestServiceModal } from '@/components/request-service-context';
+import { PhoneLink } from '@/components/phone-link';
+
+export function StickyCtaBar() {
+  const { open } = useRequestServiceModal();
+
+  return (
+    <div className="sm:hidden">
+      <div className="fixed inset-x-0 bottom-0 z-50 border-t border-slate-200 bg-white/95 px-4 pb-[calc(env(safe-area-inset-bottom)+12px)] pt-3 backdrop-blur">
+        <div className="grid grid-cols-2 gap-3">
+          <PhoneLink
+            className="inline-flex items-center justify-center rounded-full bg-teal-600 px-4 py-3 text-sm font-semibold text-white shadow-soft transition hover:bg-teal-700"
+            eventName="call_click"
+          >
+            Call Now
+          </PhoneLink>
+          <button
+            type="button"
+            onClick={() => open()}
+            className="inline-flex items-center justify-center rounded-full border border-slate-200 px-4 py-3 text-sm font-semibold text-ink-950 shadow-soft transition hover:bg-slate-50"
+          >
+            Request Service
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
