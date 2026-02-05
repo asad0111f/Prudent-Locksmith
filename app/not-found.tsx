@@ -11,7 +11,7 @@ export default function NotFound() {
         <div className="pointer-events-none absolute inset-0 -z-10 bg-hero-gradient" aria-hidden="true" />
         <Container>
           <div className="space-y-4">
-            <h1 className="text-4xl font-semibold text-ink-950">Page not found</h1>
+            <h1 className="text-3xl font-semibold text-ink-950 sm:text-4xl lg:text-5xl">Page not found</h1>
             <p className="text-sm text-ink-700">
               The page you’re looking for doesn’t exist. Use the links below to get back on track or call for immediate help.
             </p>

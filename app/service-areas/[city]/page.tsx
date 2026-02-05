@@ -74,11 +74,11 @@ export default function CityPage({ params }: { params: { city: string } }) {
             <div className="mt-6 grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
               <div className="space-y-6 motion-safe:animate-fade-up">
                 <Badge>Local Service Area</Badge>
-                <h1 className="text-4xl font-semibold text-ink-950">{city.name} locksmith & garage door service</h1>
+                <h1 className="text-3xl font-semibold text-ink-950 sm:text-4xl lg:text-5xl">{city.name} locksmith & garage door service</h1>
                 <p className="text-lg text-ink-700">{city.description}</p>
                 <div className="flex flex-wrap gap-3">
-                  <PhoneLink asButton city={city.name}>Call Now</PhoneLink>
-                  <Button href="/contact" variant="secondary">Request Service</Button>
+                  <PhoneLink asButton city={city.name} className="w-full sm:w-auto">Call Now</PhoneLink>
+                  <Button href="/contact" variant="secondary" className="w-full sm:w-auto">Request Service</Button>
                 </div>
                 <ul className="grid gap-2 text-sm text-ink-700">
                   <li>• Fast dispatch and ETA confirmation</li>
@@ -109,7 +109,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
       <Section>
         <Container>
           <div className="flex items-center justify-between">
-            <h2 className="text-2xl font-semibold text-ink-950">Top services in {city.name}</h2>
+            <h2 className="text-2xl font-semibold text-ink-950 sm:text-3xl">Top services in {city.name}</h2>
             <Link href="/services" className="text-sm font-semibold text-teal-700">View all services</Link>
           </div>
           <div className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">

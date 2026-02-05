@@ -29,7 +29,7 @@ export default function AboutPage() {
         <div className="relative">
           <div className="pointer-events-none absolute inset-0 -z-10 bg-hero-gradient" aria-hidden="true" />
           <Container>
-            <h1 className="text-4xl font-semibold text-ink-950">Trust-first service for homes and businesses</h1>
+            <h1 className="text-3xl font-semibold text-ink-950 sm:text-4xl lg:text-5xl">Trust-first service for homes and businesses</h1>
             <p className="mt-4 max-w-2xl text-lg text-ink-700">
               Prudent Locksmith and Garage Services is built for calm, dependable help. We show up with clear communication,
               professional tools, and respect for your property in Hamilton, ON and surrounding areas.

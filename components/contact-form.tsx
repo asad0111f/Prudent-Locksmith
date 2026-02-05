@@ -120,7 +120,11 @@ export function ContactForm({
       <input type="hidden" name="landingSlug" value={landingSlug || ''} />
       <input type="text" name="company" className="hidden" tabIndex={-1} autoComplete="off" />
       <div className="space-y-3">
-        <Button type="submit" disabled={status === 'loading'} className={compact ? 'w-full' : undefined}>
+        <Button
+          type="submit"
+          disabled={status === 'loading'}
+          className={compact ? 'w-full' : 'w-full sm:w-auto'}
+        >
           {status === 'loading' ? 'Sending…' : resolvedSubmitLabel}
         </Button>
         <p className="text-xs text-ink-500">No spam. We only use this to respond.</p>

@@ -31,12 +31,12 @@ export default function ContactPage() {
         <div className="relative">
           <div className="pointer-events-none absolute inset-0 -z-10 bg-hero-gradient" aria-hidden="true" />
           <Container>
-            <h1 className="text-4xl font-semibold text-ink-950">Call for immediate service</h1>
+            <h1 className="text-3xl font-semibold text-ink-950 sm:text-4xl lg:text-5xl">Call for immediate service</h1>
             <p className="mt-4 max-w-2xl text-lg text-ink-700">
               For urgent issues, call now to confirm availability and ETA. If you prefer, send a request and we will respond quickly.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
-              <PhoneLink asButton>Call {SITE.phoneDisplay}</PhoneLink>
+              <PhoneLink asButton className="w-full sm:w-auto">Call {SITE.phoneDisplay}</PhoneLink>
               <Badge>Fast response in your area</Badge>
             </div>
           </Container>

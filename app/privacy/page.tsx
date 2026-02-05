@@ -29,7 +29,7 @@ export default function PrivacyPage() {
         <div className="pointer-events-none absolute inset-0 -z-10 bg-hero-gradient" aria-hidden="true" />
         <Container>
           <div className="space-y-4">
-            <h1 className="text-4xl font-semibold text-ink-950">Privacy policy</h1>
+            <h1 className="text-3xl font-semibold text-ink-950 sm:text-4xl lg:text-5xl">Privacy policy</h1>
             <p className="text-sm text-ink-700">
               We collect contact details you provide to respond to service requests. We do not sell your information and only share
               it with technicians or partners necessary to deliver service.

@@ -70,7 +70,7 @@ export default function EmergencyPage() {
                 <Badge>Emergency Dispatch</Badge>
               </Reveal>
               <Reveal as="div" delay={60}>
-                <h1 className="text-4xl font-semibold text-ink-950">Emergency locksmith & garage door service</h1>
+                <h1 className="text-3xl font-semibold text-ink-950 sm:text-4xl lg:text-5xl">Emergency locksmith & garage door service</h1>
               </Reveal>
               <Reveal as="div" delay={120}>
                 <p className="text-lg text-ink-700">
@@ -78,8 +78,8 @@ export default function EmergencyPage() {
                 </p>
               </Reveal>
               <Reveal as="div" delay={180} className="flex flex-wrap gap-3">
-                <PhoneLink asButton eventName="emergency_cta_click">Call Now</PhoneLink>
-                <Button href="/contact" variant="secondary">Request Service</Button>
+                <PhoneLink asButton eventName="emergency_cta_click" className="w-full sm:w-auto">Call Now</PhoneLink>
+                <Button href="/contact" variant="secondary" className="w-full sm:w-auto">Request Service</Button>
               </Reveal>
               <Reveal as="ul" delay={220} className="grid gap-2 text-sm text-ink-700">
                 <li>• Fast response and ETA confirmation</li>
@@ -109,7 +109,7 @@ export default function EmergencyPage() {
       <div className="h-px w-full bg-section-divider" aria-hidden="true" />
       <Section>
         <Container>
-          <h2 className="text-2xl font-semibold text-ink-950">Top urgent services</h2>
+          <h2 className="text-2xl font-semibold text-ink-950 sm:text-3xl">Top urgent services</h2>
           <div className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             {urgentServices.map((service) => (
               <Card key={service.id} className="group">

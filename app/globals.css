@@ -14,6 +14,17 @@
   scroll-behavior: smooth;
 }
 
+html,
+body {
+  overflow-x: hidden;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
 body {
   @apply bg-white text-ink-950 antialiased;
 }

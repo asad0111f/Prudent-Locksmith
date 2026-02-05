@@ -27,7 +27,7 @@ export function Header() {
             <Link
               href="/"
               className={clsx(
-                'rounded-full px-3 py-1 transition hover:text-ink-950',
+                'inline-flex min-h-[44px] items-center rounded-full px-3 py-1 transition hover:text-ink-950',
                 isActive('/') && 'bg-slate-100/70 text-ink-950'
               )}
             >
@@ -36,7 +36,7 @@ export function Header() {
             <Link
               href="/emergency"
               className={clsx(
-                'rounded-full px-3 py-1 transition hover:text-ink-950',
+                'inline-flex min-h-[44px] items-center rounded-full px-3 py-1 transition hover:text-ink-950',
                 isActive('/emergency') && 'bg-slate-100/70 text-ink-950'
               )}
             >
@@ -46,7 +46,7 @@ export function Header() {
             <Link
               href="/service-areas"
               className={clsx(
-                'rounded-full px-3 py-1 transition hover:text-ink-950',
+                'inline-flex min-h-[44px] items-center rounded-full px-3 py-1 transition hover:text-ink-950',
                 isActive('/service-areas') && 'bg-slate-100/70 text-ink-950'
               )}
             >
@@ -55,7 +55,7 @@ export function Header() {
             <Link
               href="/about"
               className={clsx(
-                'rounded-full px-3 py-1 transition hover:text-ink-950',
+                'inline-flex min-h-[44px] items-center rounded-full px-3 py-1 transition hover:text-ink-950',
                 isActive('/about') && 'bg-slate-100/70 text-ink-950'
               )}
             >
@@ -64,7 +64,7 @@ export function Header() {
             <Link
               href="/contact"
               className={clsx(
-                'rounded-full px-3 py-1 transition hover:text-ink-950',
+                'inline-flex min-h-[44px] items-center rounded-full px-3 py-1 transition hover:text-ink-950',
                 isActive('/contact') && 'bg-slate-100/70 text-ink-950'
               )}
             >
@@ -168,7 +168,7 @@ function ServicesMenu({ active }: { active: boolean }) {
         aria-controls="services-mega-menu"
         onClick={() => setOpen((prev) => !prev)}
         className={clsx(
-          'inline-flex items-center gap-1 rounded-full px-3 py-1 text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 focus-visible:ring-offset-2',
+          'inline-flex min-h-[44px] items-center gap-1 rounded-full px-3 py-1 text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 focus-visible:ring-offset-2',
           active ? 'bg-teal-50 text-teal-700' : 'text-ink-700 hover:text-ink-950'
         )}
       >
@@ -188,8 +188,8 @@ function ServicesMenu({ active }: { active: boolean }) {
           maxHeight: `calc(100vh - ${headerHeight}px - 16px)`
         }}
       >
-        <div className="mega-menu-gradient mx-auto w-full max-w-5xl rounded-2xl border border-slate-200 p-6 shadow-soft">
-          <div className="grid gap-6 lg:grid-cols-[1fr_1fr_0.9fr]">
+        <div className="mega-menu-gradient mx-auto w-full max-w-6xl rounded-2xl border border-slate-200 p-6 shadow-soft">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-[1fr_1fr_1fr_0.9fr]">
             {servicesConfig.map((category) => (
               <div key={category.slug} className="border-l border-slate-100 pl-4">
                 <p className="text-xs font-semibold uppercase tracking-wide text-teal-700">{category.label}</p>
@@ -219,7 +219,7 @@ function ServicesMenu({ active }: { active: boolean }) {
                 </ul>
               </div>
             ))}
-            <div className="mega-top-gradient rounded-2xl border border-rose-100 p-4">
+            <div className="mega-top-gradient order-first rounded-2xl border border-rose-100 p-4 lg:order-last">
               <p className="text-xs font-semibold uppercase tracking-wide text-rose-600">Top Services</p>
               <p className="mt-2 text-sm font-semibold text-ink-950">Emergency priority</p>
               <ul className="mt-4 space-y-3 text-sm text-ink-700">
@@ -261,65 +261,150 @@ function MobileMenu() {
     if (path === '/') return pathname === '/';
     return pathname?.startsWith(path) ?? false;
   };
+  const [open, setOpen] = useState(false);
+  const panelRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === 'Escape') {
+        setOpen(false);
+      }
+    }
+    if (open) {
+      document.addEventListener('keydown', onKeyDown);
+      document.body.style.overflow = 'hidden';
+    }
+    return () => {
+      document.removeEventListener('keydown', onKeyDown);
+      document.body.style.overflow = '';
+    };
+  }, [open]);
+
+  useEffect(() => {
+    function onClickOutside(event: MouseEvent) {
+      const target = event.target as Node;
+      if (!panelRef.current?.contains(target)) {
+        setOpen(false);
+      }
+    }
+    if (open) {
+      document.addEventListener('mousedown', onClickOutside);
+    }
+    return () => document.removeEventListener('mousedown', onClickOutside);
+  }, [open]);
 
   return (
-    <details className="relative">
-      <summary className="cursor-pointer list-none rounded-md border border-slate-200 px-3 py-2 text-sm font-semibold text-ink-950">
+    <>
+      <button
+        type="button"
+        onClick={() => setOpen(true)}
+        aria-expanded={open}
+        aria-controls="mobile-menu-drawer"
+        className="inline-flex min-h-[44px] items-center justify-center rounded-md border border-slate-200 px-3 text-sm font-semibold text-ink-950"
+      >
         Menu
-      </summary>
-      <div className="absolute right-0 mt-2 w-72 rounded-lg border border-slate-200 bg-white p-4 shadow-soft">
-        <nav className="flex flex-col gap-3 text-sm font-medium">
-          <Link
-            href="/"
-            className={clsx('rounded-md px-2 py-1 text-ink-700 hover:text-ink-950', isActive('/') && 'bg-slate-100 text-ink-950')}
+      </button>
+      {open ? (
+        <div className="fixed inset-0 z-[60] md:hidden">
+          <div className="absolute inset-0 bg-black/40" aria-hidden="true" />
+          <div
+            ref={panelRef}
+            id="mobile-menu-drawer"
+            role="dialog"
+            aria-modal="true"
+            className="absolute right-0 top-0 h-full w-[85vw] max-w-sm overflow-y-auto bg-white px-5 pb-10 pt-6 shadow-soft"
           >
-            Home
-          </Link>
-          <Link
-            href="/emergency"
-            className={clsx('rounded-md px-2 py-1 text-ink-700 hover:text-ink-950', isActive('/emergency') && 'bg-slate-100 text-ink-950')}
-          >
-            Emergency
-          </Link>
-          <details>
-            <summary className="cursor-pointer list-none text-ink-700">Services</summary>
-            <div className="mt-3 grid gap-3">
-              {servicesConfig.map((category) => (
-                <details key={category.slug}>
-                  <summary className="cursor-pointer list-none font-semibold text-ink-950">{category.label}</summary>
-                  <ul className="mt-2 space-y-2 text-sm text-ink-700">
-                    {category.services.map((service) => (
-                      <li key={service.id}>
-                        <Link href={`/services/${category.slug}/${service.slug}`} className="transition hover:text-ink-950">
-                          {service.shortLabel}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </details>
-              ))}
+            <div className="flex items-center justify-between">
+              <p className="text-sm font-semibold text-ink-950">Menu</p>
+              <button
+                type="button"
+                onClick={() => setOpen(false)}
+                className="min-h-[44px] text-sm font-semibold text-ink-700"
+              >
+                Close
+              </button>
             </div>
-          </details>
-          <Link
-            href="/service-areas"
-            className={clsx('rounded-md px-2 py-1 text-ink-700 hover:text-ink-950', isActive('/service-areas') && 'bg-slate-100 text-ink-950')}
-          >
-            Service Areas
-          </Link>
-          <Link
-            href="/about"
-            className={clsx('rounded-md px-2 py-1 text-ink-700 hover:text-ink-950', isActive('/about') && 'bg-slate-100 text-ink-950')}
-          >
-            About
-          </Link>
-          <Link
-            href="/contact"
-            className={clsx('rounded-md px-2 py-1 text-ink-700 hover:text-ink-950', isActive('/contact') && 'bg-slate-100 text-ink-950')}
-          >
-            Contact
-          </Link>
-        </nav>
-      </div>
-    </details>
+            <nav className="mt-4 flex flex-col gap-3 text-sm font-medium">
+              <Link
+                href="/"
+                className={clsx('rounded-md px-3 py-2 text-ink-700 hover:text-ink-950', isActive('/') && 'bg-slate-100 text-ink-950')}
+                onClick={() => setOpen(false)}
+              >
+                Home
+              </Link>
+              <Link
+                href="/emergency"
+                className={clsx('rounded-md px-3 py-2 text-ink-700 hover:text-ink-950', isActive('/emergency') && 'bg-slate-100 text-ink-950')}
+                onClick={() => setOpen(false)}
+              >
+                Emergency
+              </Link>
+              <div className="rounded-xl border border-slate-200/70 p-3">
+                <p className="text-xs font-semibold uppercase tracking-wide text-ink-500">Top services</p>
+                <ul className="mt-3 space-y-2">
+                  {getEmergencyServices().slice(0, 4).map((service) => (
+                    <li key={service.id}>
+                      <Link
+                        href={`/services/${service.category.slug}/${service.slug}`}
+                        className="block rounded-md px-2 py-2 text-ink-700 hover:text-ink-950"
+                        onClick={() => setOpen(false)}
+                      >
+                        {service.shortLabel}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <details className="rounded-xl border border-slate-200/70 p-3">
+                <summary className="cursor-pointer list-none text-sm font-semibold text-ink-950">Services</summary>
+                <div className="mt-3 grid gap-4">
+                  {servicesConfig.map((category) => (
+                    <details key={category.slug}>
+                      <summary className="cursor-pointer list-none text-xs font-semibold uppercase tracking-wide text-ink-500">
+                        {category.label}
+                      </summary>
+                      <ul className="mt-2 space-y-2 text-sm text-ink-700">
+                        {category.services.map((service) => (
+                          <li key={service.id}>
+                            <Link
+                              href={`/services/${category.slug}/${service.slug}`}
+                              className="block rounded-md px-2 py-2 transition hover:text-ink-950"
+                              onClick={() => setOpen(false)}
+                            >
+                              {service.shortLabel}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </details>
+                  ))}
+                </div>
+              </details>
+              <Link
+                href="/service-areas"
+                className={clsx('rounded-md px-3 py-2 text-ink-700 hover:text-ink-950', isActive('/service-areas') && 'bg-slate-100 text-ink-950')}
+                onClick={() => setOpen(false)}
+              >
+                Service Areas
+              </Link>
+              <Link
+                href="/about"
+                className={clsx('rounded-md px-3 py-2 text-ink-700 hover:text-ink-950', isActive('/about') && 'bg-slate-100 text-ink-950')}
+                onClick={() => setOpen(false)}
+              >
+                About
+              </Link>
+              <Link
+                href="/contact"
+                className={clsx('rounded-md px-3 py-2 text-ink-700 hover:text-ink-950', isActive('/contact') && 'bg-slate-100 text-ink-950')}
+                onClick={() => setOpen(false)}
+              >
+                Contact
+              </Link>
+            </nav>
+          </div>
+        </div>
+      ) : null}
+    </>
   );
 }

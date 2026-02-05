@@ -23,7 +23,7 @@ type ButtonProps = AnchorButtonProps | NativeButtonProps;
 
 export function Button({ href, variant = 'primary', size = 'md', className, ...props }: ButtonProps) {
   const base =
-    'inline-flex items-center justify-center rounded-full font-semibold transition duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 focus-visible:ring-offset-2 motion-safe:hover:-translate-y-0.5 motion-safe:hover:shadow-md active:translate-y-0 active:shadow-sm';
+    'inline-flex min-h-[44px] items-center justify-center rounded-full font-semibold transition duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 focus-visible:ring-offset-2 motion-safe:hover:-translate-y-0.5 motion-safe:hover:shadow-md active:translate-y-0 active:shadow-sm';
   const sizes = {
     md: 'px-6 py-3 text-sm',
     sm: 'px-4 py-2 text-xs'

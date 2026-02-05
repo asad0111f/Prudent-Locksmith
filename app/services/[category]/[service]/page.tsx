@@ -98,7 +98,7 @@ export default function ServicePage({ params }: { params: { category: string; se
                 </span>
               ) : null}
               <Reveal as="div" delay={60}>
-                <h1 className="text-4xl font-semibold text-ink-950 md:text-5xl">{service.name}</h1>
+                <h1 className="text-3xl font-semibold text-ink-950 sm:text-4xl lg:text-5xl">{service.name}</h1>
               </Reveal>
               <Reveal as="div" delay={120}>
                 <p className="text-lg text-ink-700">
@@ -110,10 +110,10 @@ export default function ServicePage({ params }: { params: { category: string; se
                 <span>Last reviewed {service.lastReviewed}</span>
               </Reveal>
               <Reveal as="div" delay={180} className="flex flex-wrap gap-3">
-                <PhoneLink asButton eventName="service_cta_click" serviceName={service.name}>
+                <PhoneLink asButton eventName="service_cta_click" serviceName={service.name} className="w-full sm:w-auto">
                   Call Now
                 </PhoneLink>
-                <RequestServiceTrigger serviceName={service.name} label="Request Service" variant="secondary" />
+                <RequestServiceTrigger serviceName={service.name} label="Request Service" variant="secondary" className="w-full sm:w-auto" />
                 {service.urgent ? (
                   <span className="inline-flex items-center rounded-full bg-rose-50 px-3 py-1 text-xs font-semibold text-rose-700">
                     Urgent response prioritized
@@ -160,7 +160,7 @@ export default function ServicePage({ params }: { params: { category: string; se
           <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
             <div className="space-y-10">
               <div className="space-y-4">
-                <h2 className="text-2xl font-semibold text-ink-950">Common problems we solve</h2>
+                <h2 className="text-2xl font-semibold text-ink-950 sm:text-3xl">Common problems we solve</h2>
                 <ul className="grid gap-2 text-sm text-ink-700">
                   {service.commonProblems.map((item) => (
                     <li key={item}>• {item}</li>
@@ -168,7 +168,7 @@ export default function ServicePage({ params }: { params: { category: string; se
                 </ul>
               </div>
               <div className="space-y-4">
-                <h2 className="text-2xl font-semibold text-ink-950">Our process</h2>
+                <h2 className="text-2xl font-semibold text-ink-950 sm:text-3xl">Our process</h2>
                 <ol className="grid gap-2 text-sm text-ink-700">
                   {service.process.map((step, index) => (
                     <li key={step}>{index + 1}. {step}</li>
@@ -200,7 +200,7 @@ export default function ServicePage({ params }: { params: { category: string; se
       <Section className="bg-surface-muted">
         <Container>
           <div className="flex items-center justify-between">
-            <h2 className="text-2xl font-semibold text-ink-950">Related services</h2>
+            <h2 className="text-2xl font-semibold text-ink-950 sm:text-3xl">Related services</h2>
             <Link href="/services" className="text-sm font-semibold text-teal-700">View all services</Link>
           </div>
           <div className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">

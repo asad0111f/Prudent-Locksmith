@@ -86,7 +86,7 @@ export function RequestServiceModal() {
     >
       <div
         ref={dialogRef}
-        className="surface-panel mx-auto w-full max-w-lg overflow-hidden transition duration-200"
+        className="surface-panel mx-auto w-[calc(100%-24px)] max-h-[85vh] overflow-auto transition duration-200 sm:max-w-lg"
         style={{ opacity: active ? 1 : 0, transform: active ? 'scale(1)' : 'scale(0.98)' }}
       >
         <div className="flex items-center justify-between border-b border-slate-100 px-5 py-4">

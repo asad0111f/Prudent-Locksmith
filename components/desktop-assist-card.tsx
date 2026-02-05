@@ -39,7 +39,7 @@ export function DesktopAssistCard() {
   }
 
   return (
-    <div className="surface-panel fixed bottom-6 right-6 z-40 hidden w-64 p-4 backdrop-blur md:block motion-safe:animate-fade-slide">
+    <div className="surface-panel fixed bottom-3 left-3 right-3 z-40 w-auto p-4 backdrop-blur motion-safe:animate-fade-slide sm:bottom-6 sm:left-auto sm:right-6 sm:w-[360px]">
       <p className="text-sm font-semibold text-ink-950">Need help now?</p>
       <p className="mt-2 text-xs text-ink-700">Call for urgent service or request a quick dispatch.</p>
       <div className="mt-3 grid gap-2">

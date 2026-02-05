@@ -44,7 +44,7 @@ export default function HomePage() {
                 <Badge>Emergency & Same-Day Dispatch</Badge>
               </Reveal>
               <Reveal as="div" delay={60}>
-                <h1 className="text-4xl font-semibold leading-tight text-ink-950 md:text-5xl">
+                <h1 className="text-3xl font-semibold leading-tight text-ink-950 sm:text-4xl lg:text-5xl">
                   Fast locksmith & garage door help when you need it most
                 </h1>
               </Reveal>
@@ -55,8 +55,8 @@ export default function HomePage() {
                 </p>
               </Reveal>
               <Reveal as="div" delay={180} className="flex flex-wrap gap-3">
-                <PhoneLink asButton>Call Now</PhoneLink>
-                <RequestServiceTrigger label="Request Service" variant="secondary" />
+                <PhoneLink asButton className="w-full sm:w-auto">Call Now</PhoneLink>
+                <RequestServiceTrigger label="Request Service" variant="secondary" className="w-full sm:w-auto" />
               </Reveal>
               <Reveal as="ul" delay={220} className="grid gap-2 text-sm text-ink-700">
                 <li>• Fast response for urgent issues</li>
@@ -96,7 +96,7 @@ export default function HomePage() {
       <Section>
         <Container>
           <Reveal as="div" className="flex items-center justify-between">
-            <h2 className="text-2xl font-semibold text-ink-950">Services built for urgent and planned needs</h2>
+            <h2 className="text-2xl font-semibold text-ink-950 sm:text-3xl">Services built for urgent and planned needs</h2>
             <div className="flex flex-wrap gap-4 text-sm font-semibold text-teal-700">
               <Link href="/services">View all services</Link>
               <Link href="/emergency">Emergency service</Link>
@@ -150,7 +150,7 @@ export default function HomePage() {
         <Container>
           <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
             <div>
-              <h2 className="text-3xl font-semibold text-ink-950">How it works</h2>
+              <h2 className="text-2xl font-semibold text-ink-950 sm:text-3xl">How it works</h2>
               <ol className="mt-4 grid gap-3 text-sm text-ink-700">
                 <li>1. Call or request service with your issue and location.</li>
                 <li>2. We confirm ETA and provide an upfront quote.</li>
@@ -172,7 +172,7 @@ export default function HomePage() {
         <Container>
           <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
             <div>
-              <h2 className="text-3xl font-semibold text-ink-950">Why choose Prudent</h2>
+              <h2 className="text-2xl font-semibold text-ink-950 sm:text-3xl">Why choose Prudent</h2>
               <ul className="mt-4 grid gap-2 text-sm text-ink-700">
                 <li>• Licensed where required and insured technicians</li>
                 <li>• Clear, upfront pricing before work begins</li>

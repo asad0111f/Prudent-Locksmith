@@ -118,16 +118,16 @@ export default function LandingPage({ params }: { params: { slug: string } }) {
                 </Reveal>
               ) : null}
               <Reveal as="div" delay={60}>
-                <h1 className="text-4xl font-semibold text-ink-950">{landing.headline}</h1>
+                <h1 className="text-3xl font-semibold text-ink-950 sm:text-4xl lg:text-5xl">{landing.headline}</h1>
               </Reveal>
               <Reveal as="div" delay={120}>
                 <p className="text-lg text-ink-700">{landing.subheadline}</p>
               </Reveal>
               <Reveal as="div" delay={180} className="flex flex-wrap gap-3">
-                <PhoneLink asButton source="landing" serviceName={primaryService.name} city={landing.city} slug={landing.slug}>
+                <PhoneLink asButton source="landing" serviceName={primaryService.name} city={landing.city} slug={landing.slug} className="w-full sm:w-auto">
                   Call Now
                 </PhoneLink>
-                <Button href="#request" variant="secondary">Request Service</Button>
+                <Button href="#request" variant="secondary" className="w-full sm:w-auto">Request Service</Button>
               </Reveal>
               <Reveal as="ul" delay={220} className="grid gap-2 text-sm text-ink-700">
                 {landing.benefits.map((benefit) => (

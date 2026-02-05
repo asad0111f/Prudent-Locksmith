@@ -60,7 +60,7 @@ export default function ServicesPage() {
                   <Badge>Popular & Emergency Services</Badge>
                 </Reveal>
                 <Reveal as="div" delay={60}>
-                  <h1 className="text-4xl font-semibold text-ink-950">Complete locksmith and garage door care</h1>
+                  <h1 className="text-3xl font-semibold text-ink-950 sm:text-4xl lg:text-5xl">Complete locksmith and garage door care</h1>
                 </Reveal>
                 <Reveal as="div" delay={120}>
                   <p className="text-lg text-ink-700">
@@ -68,8 +68,8 @@ export default function ServicesPage() {
                   </p>
                 </Reveal>
                 <Reveal as="div" delay={180} className="flex flex-wrap gap-3">
-                  <PhoneLink asButton>Call Now</PhoneLink>
-                  <Button href="/contact" variant="secondary">Request Service</Button>
+                  <PhoneLink asButton className="w-full sm:w-auto">Call Now</PhoneLink>
+                  <Button href="/contact" variant="secondary" className="w-full sm:w-auto">Request Service</Button>
                 </Reveal>
               </div>
                 <Card className="space-y-4">
@@ -94,7 +94,7 @@ export default function ServicesPage() {
       <Section>
         <Container>
           <Reveal as="div" className="flex items-center justify-between">
-            <h2 className="text-2xl font-semibold text-ink-950">Popular & emergency services</h2>
+            <h2 className="text-2xl font-semibold text-ink-950 sm:text-3xl">Popular & emergency services</h2>
             <Link href="#categories" className="text-sm font-semibold text-teal-700">View all categories</Link>
           </Reveal>
           <div className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -132,7 +132,7 @@ export default function ServicesPage() {
       <div className="h-px w-full bg-section-divider" aria-hidden="true" />
       <Section>
         <Container>
-          <Reveal as="h2" className="text-2xl font-semibold text-ink-950">Related reading</Reveal>
+          <Reveal as="h2" className="text-2xl font-semibold text-ink-950 sm:text-3xl">Related reading</Reveal>
           <div className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             {relatedReading.map((service) => (
               <ServiceCard key={service.id} service={service} />

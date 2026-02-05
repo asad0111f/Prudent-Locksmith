@@ -35,14 +35,14 @@ export default function ServiceAreasPage() {
           <Container>
             <div className="space-y-4">
               <Badge>Local Service Coverage</Badge>
-              <h1 className="text-4xl font-semibold text-ink-950">Service areas we cover</h1>
+              <h1 className="text-3xl font-semibold text-ink-950 sm:text-4xl lg:text-5xl">Service areas we cover</h1>
               <p className="max-w-2xl text-lg text-ink-700">
                 We dispatch across Hamilton, ON and nearby cities with fast response and clear pricing. Choose your area to see
                 local service details and top services.
               </p>
               <div className="flex flex-wrap gap-3">
-                <PhoneLink asButton>Call Now</PhoneLink>
-                <Button href="/contact" variant="secondary">Request Service</Button>
+                <PhoneLink asButton className="w-full sm:w-auto">Call Now</PhoneLink>
+                <Button href="/contact" variant="secondary" className="w-full sm:w-auto">Request Service</Button>
               </div>
             </div>
           </Container>
