@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ContactForm } from '@/components/contact-form';
 import { useRequestServiceModal } from '@/components/request-service-context';
 
@@ -8,6 +8,19 @@ export function RequestServiceModal() {
   const { isOpen, serviceName, close } = useRequestServiceModal();
   const dialogRef = useRef<HTMLDivElement | null>(null);
   const lastActiveRef = useRef<HTMLElement | null>(null);
+  const [render, setRender] = useState(false);
+  const [active, setActive] = useState(false);
+
+  useEffect(() => {
+    if (isOpen) {
+      setRender(true);
+      requestAnimationFrame(() => setActive(true));
+    } else if (render) {
+      setActive(false);
+      const timeout = setTimeout(() => setRender(false), 180);
+      return () => clearTimeout(timeout);
+    }
+  }, [isOpen, render]);
 
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
@@ -59,13 +72,23 @@ export function RequestServiceModal() {
     };
   }, [isOpen, close]);
 
-  if (!isOpen) {
+  if (!render) {
     return null;
   }
 
   return (
-    <div className="fixed inset-0 z-[60] bg-black/40 p-4" role="dialog" aria-modal="true">
-      <div ref={dialogRef} className="mx-auto w-full max-w-lg overflow-hidden rounded-2xl bg-white shadow-soft">
+    <div
+      className="fixed inset-0 z-[60] bg-black/40 p-4 transition-opacity duration-200"
+      role="dialog"
+      aria-modal="true"
+      data-state={active ? 'open' : 'closed'}
+      style={{ opacity: active ? 1 : 0 }}
+    >
+      <div
+        ref={dialogRef}
+        className="mx-auto w-full max-w-lg overflow-hidden rounded-2xl bg-white shadow-soft transition duration-200"
+        style={{ opacity: active ? 1 : 0, transform: active ? 'scale(1)' : 'scale(0.98)' }}
+      >
         <div className="flex items-center justify-between border-b border-slate-100 px-5 py-4">
           <p className="text-sm font-semibold text-ink-950">Request Service</p>
           <button

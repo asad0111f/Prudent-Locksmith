@@ -8,6 +8,7 @@ import { CategorySection, ServiceCard } from '@/components/service-cards';
 import { ReviewsSection } from '@/components/reviews';
 import { TrustStrip } from '@/components/trust-strip';
 import { PhoneLink } from '@/components/phone-link';
+import { Reveal } from '@/components/reveal';
 import { SITE } from '@/lib/site';
 import { getEmergencyServices, getServiceById, servicesConfig } from '@/lib/services';
 import { RequestServiceTrigger } from '@/components/request-service-trigger';
@@ -51,13 +52,19 @@ export default function ServicesPage() {
         <Section className="pt-12">
           <Container>
             <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
-              <div className="space-y-6 motion-safe:animate-fade-up">
-                <Badge>Popular & Emergency Services</Badge>
-                <h1 className="text-4xl font-semibold text-ink-950">Complete locksmith and garage door care</h1>
-                <p className="text-lg text-ink-700">
-                  From urgent lockouts to planned repairs and upgrades, Prudent delivers clear pricing and fast response across local neighborhoods.
-                </p>
-                <div className="flex flex-wrap gap-3">
+              <div className="space-y-6">
+                <Reveal as="div" delay={0}>
+                  <Badge>Popular & Emergency Services</Badge>
+                </Reveal>
+                <Reveal as="div" delay={60}>
+                  <h1 className="text-4xl font-semibold text-ink-950">Complete locksmith and garage door care</h1>
+                </Reveal>
+                <Reveal as="div" delay={120}>
+                  <p className="text-lg text-ink-700">
+                    From urgent lockouts to planned repairs and upgrades, Prudent delivers clear pricing and fast response across local neighborhoods.
+                  </p>
+                </Reveal>
+                <Reveal as="div" delay={180} className="flex flex-wrap gap-3">
                   <PhoneLink asButton>Call Now</PhoneLink>
                   <Link
                     href="/contact"
@@ -65,7 +72,7 @@ export default function ServicesPage() {
                   >
                     Request Service
                   </Link>
-                </div>
+                </Reveal>
               </div>
               <Card className="space-y-4">
                 <h2 className="text-xl font-semibold text-ink-950">Emergency dispatch</h2>
@@ -85,22 +92,24 @@ export default function ServicesPage() {
 
       <Section>
         <Container>
-          <div className="flex items-center justify-between">
+          <Reveal as="div" className="flex items-center justify-between">
             <h2 className="text-2xl font-semibold text-ink-950">Popular & emergency services</h2>
             <Link href="#categories" className="text-sm font-semibold text-teal-700">View all categories</Link>
-          </div>
+          </Reveal>
           <div className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {emergencyServices.map((service) => (
-              <Card key={service.id} className="group motion-safe:animate-fade-up">
-                <h3 className="text-lg font-semibold text-ink-950">{service.name}</h3>
-                <p className="mt-2 text-sm text-ink-700">{service.shortDescription}</p>
-                <div className="mt-4 flex flex-wrap items-center gap-3">
-                  <Link href={`/services/${service.category.slug}/${service.slug}`} className="text-sm font-semibold text-teal-700">
-                    View details
-                  </Link>
-                  <RequestServiceTrigger serviceName={service.name} label="Request" size="sm" />
-                </div>
-              </Card>
+              <Reveal key={service.id} as="div">
+                <Card className="group">
+                  <h3 className="text-lg font-semibold text-ink-950">{service.name}</h3>
+                  <p className="mt-2 text-sm text-ink-700">{service.shortDescription}</p>
+                  <div className="mt-4 flex flex-wrap items-center gap-3">
+                    <Link href={`/services/${service.category.slug}/${service.slug}`} className="text-sm font-semibold text-teal-700">
+                      View details
+                    </Link>
+                    <RequestServiceTrigger serviceName={service.name} label="Request" size="sm" />
+                  </div>
+                </Card>
+              </Reveal>
             ))}
           </div>
         </Container>
@@ -120,7 +129,7 @@ export default function ServicesPage() {
 
       <Section>
         <Container>
-          <h2 className="text-2xl font-semibold text-ink-950">Related reading</h2>
+          <Reveal as="h2" className="text-2xl font-semibold text-ink-950">Related reading</Reveal>
           <div className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             {relatedReading.map((service) => (
               <ServiceCard key={service.id} service={service} />

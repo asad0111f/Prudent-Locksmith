@@ -9,6 +9,7 @@ import { Section } from '@/components/ui/section';
 import { ReviewsSection } from '@/components/reviews';
 import { TrustStrip } from '@/components/trust-strip';
 import { PhoneLink } from '@/components/phone-link';
+import { Reveal } from '@/components/reveal';
 import { SITE } from '@/lib/site';
 
 export const metadata: Metadata = {
@@ -34,25 +35,32 @@ export default function HomePage() {
     <>
       <Section className="pt-12">
         <Container>
-          <div className="grid items-center gap-10 lg:grid-cols-[1.2fr_0.8fr]">
-            <div className="space-y-6 motion-safe:animate-fade-up">
-              <Badge>Emergency & Same-Day Dispatch</Badge>
-              <h1 className="text-4xl font-semibold leading-tight text-ink-950 md:text-5xl">
-                Fast locksmith & garage door help when you need it most
-              </h1>
-              <p className="text-lg text-ink-700">
-                Locked out, stuck door, or damaged lock? Prudent Locksmith and Garage Services delivers calm, professional help
-                with upfront pricing and local technicians across Hamilton and the GTA.
-              </p>
-              <div className="flex flex-wrap gap-3">
+          <div className="relative grid items-center gap-10 lg:grid-cols-[1.2fr_0.8fr]">
+            <div className="pointer-events-none absolute -top-24 left-0 h-64 w-64 rounded-full bg-teal-200/30 blur-3xl" aria-hidden="true" />
+            <div className="space-y-6">
+              <Reveal as="div" delay={0}>
+                <Badge>Emergency & Same-Day Dispatch</Badge>
+              </Reveal>
+              <Reveal as="div" delay={60}>
+                <h1 className="text-4xl font-semibold leading-tight text-ink-950 md:text-5xl">
+                  Fast locksmith & garage door help when you need it most
+                </h1>
+              </Reveal>
+              <Reveal as="div" delay={120}>
+                <p className="text-lg text-ink-700">
+                  Locked out, stuck door, or damaged lock? Prudent Locksmith and Garage Services delivers calm, professional help
+                  with upfront pricing and local technicians across Hamilton and the GTA.
+                </p>
+              </Reveal>
+              <Reveal as="div" delay={180} className="flex flex-wrap gap-3">
                 <PhoneLink asButton>Call Now</PhoneLink>
                 <RequestServiceTrigger label="Request Service" variant="secondary" />
-              </div>
-              <ul className="grid gap-2 text-sm text-ink-700">
+              </Reveal>
+              <Reveal as="ul" delay={220} className="grid gap-2 text-sm text-ink-700">
                 <li>• Fast response for urgent issues</li>
                 <li>• Clear quotes before work starts</li>
                 <li>• Residential, automotive, and commercial support</li>
-              </ul>
+              </Reveal>
             </div>
             <Card className="p-8">
               <div className="space-y-4">
@@ -82,14 +90,14 @@ export default function HomePage() {
 
       <Section>
         <Container>
-          <div className="flex items-center justify-between">
+          <Reveal as="div" className="flex items-center justify-between">
             <h2 className="text-2xl font-semibold text-ink-950">Services built for urgent and planned needs</h2>
             <div className="flex flex-wrap gap-4 text-sm font-semibold text-teal-700">
               <Link href="/services">View all services</Link>
               <Link href="/emergency">Emergency service</Link>
               <Link href="/service-areas">Service areas</Link>
             </div>
-          </div>
+          </Reveal>
           <div className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {[
               {
@@ -118,13 +126,15 @@ export default function HomePage() {
                 href: '/services/commercial-storefront-lock-services/storefront-lock-repair'
               }
             ].map((item) => (
-              <Card key={item.title} className="group motion-safe:animate-fade-up">
-                <h3 className="text-lg font-semibold text-ink-950">{item.title}</h3>
-                <p className="mt-2 text-sm text-ink-700">{item.text}</p>
-                <Link href={item.href} className="mt-4 inline-flex text-sm font-semibold text-teal-700">
-                  View details
-                </Link>
-              </Card>
+              <Reveal key={item.title} as="div">
+                <Card className="group">
+                  <h3 className="text-lg font-semibold text-ink-950">{item.title}</h3>
+                  <p className="mt-2 text-sm text-ink-700">{item.text}</p>
+                  <Link href={item.href} className="mt-4 inline-flex text-sm font-semibold text-teal-700">
+                    View details
+                  </Link>
+                </Card>
+              </Reveal>
             ))}
           </div>
         </Container>

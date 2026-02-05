@@ -9,6 +9,7 @@ import { TrustStrip } from '@/components/trust-strip';
 import { PhoneLink } from '@/components/phone-link';
 import { ProcessTimeline } from '@/components/process-timeline';
 import { WhyDifferent } from '@/components/why-different';
+import { Reveal } from '@/components/reveal';
 import { SITE } from '@/lib/site';
 import { getServiceById } from '@/lib/services';
 
@@ -62,12 +63,18 @@ export default function EmergencyPage() {
         <Container>
           <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
             <div className="space-y-6">
-              <Badge>Emergency Dispatch</Badge>
-              <h1 className="text-4xl font-semibold text-ink-950">Emergency locksmith & garage door service</h1>
-              <p className="text-lg text-ink-700">
-                Locked out or stuck door? Call now for fast dispatch and clear pricing across Hamilton, ON and nearby areas.
-              </p>
-              <div className="flex flex-wrap gap-3">
+              <Reveal as="div" delay={0}>
+                <Badge>Emergency Dispatch</Badge>
+              </Reveal>
+              <Reveal as="div" delay={60}>
+                <h1 className="text-4xl font-semibold text-ink-950">Emergency locksmith & garage door service</h1>
+              </Reveal>
+              <Reveal as="div" delay={120}>
+                <p className="text-lg text-ink-700">
+                  Locked out or stuck door? Call now for fast dispatch and clear pricing across Hamilton, ON and nearby areas.
+                </p>
+              </Reveal>
+              <Reveal as="div" delay={180} className="flex flex-wrap gap-3">
                 <PhoneLink asButton eventName="emergency_cta_click">Call Now</PhoneLink>
                 <Link
                   href="/contact"
@@ -75,12 +82,12 @@ export default function EmergencyPage() {
                 >
                   Request Service
                 </Link>
-              </div>
-              <ul className="grid gap-2 text-sm text-ink-700">
+              </Reveal>
+              <Reveal as="ul" delay={220} className="grid gap-2 text-sm text-ink-700">
                 <li>• Fast response and ETA confirmation</li>
                 <li>• Upfront pricing before work starts</li>
                 <li>• Licensed where required and insured technicians</li>
-              </ul>
+              </Reveal>
             </div>
             <Card>
               <h2 className="text-lg font-semibold text-ink-950">Immediate help line</h2>

@@ -126,7 +126,7 @@ export function ContactForm({
         <p className="text-xs text-ink-500">No spam. We only use this to respond.</p>
         {status === 'success' ? (
           <div
-            className="rounded-xl border border-emerald-100 bg-emerald-50 p-4 text-sm text-emerald-800"
+            className="rounded-xl border border-emerald-100 bg-emerald-50 p-4 text-sm text-emerald-800 motion-safe:animate-fade-slide"
             role="status"
             aria-live="polite"
           >

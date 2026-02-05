@@ -13,6 +13,7 @@ import { SeoFaq } from '@/components/seo-faq';
 import { LandingPageClient } from '@/components/landing-page-client';
 import { ProcessTimeline } from '@/components/process-timeline';
 import { WhyDifferent } from '@/components/why-different';
+import { Reveal } from '@/components/reveal';
 import { SITE } from '@/lib/site';
 import { getServiceById, getServiceUrl, servicesConfig } from '@/lib/services';
 import { cities } from '@/lib/cities';
@@ -108,10 +109,18 @@ export default function LandingPage({ params }: { params: { slug: string } }) {
         <Container>
           <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
             <div className="space-y-6">
-              {landing.urgencyBadge ? <Badge>{landing.urgencyBadge}</Badge> : null}
-              <h1 className="text-4xl font-semibold text-ink-950">{landing.headline}</h1>
-              <p className="text-lg text-ink-700">{landing.subheadline}</p>
-              <div className="flex flex-wrap gap-3">
+              {landing.urgencyBadge ? (
+                <Reveal as="div">
+                  <Badge>{landing.urgencyBadge}</Badge>
+                </Reveal>
+              ) : null}
+              <Reveal as="div" delay={60}>
+                <h1 className="text-4xl font-semibold text-ink-950">{landing.headline}</h1>
+              </Reveal>
+              <Reveal as="div" delay={120}>
+                <p className="text-lg text-ink-700">{landing.subheadline}</p>
+              </Reveal>
+              <Reveal as="div" delay={180} className="flex flex-wrap gap-3">
                 <PhoneLink asButton source="landing" serviceName={primaryService.name} city={landing.city} slug={landing.slug}>
                   Call Now
                 </PhoneLink>
@@ -121,12 +130,12 @@ export default function LandingPage({ params }: { params: { slug: string } }) {
                 >
                   Request Service
                 </Link>
-              </div>
-              <ul className="grid gap-2 text-sm text-ink-700">
+              </Reveal>
+              <Reveal as="ul" delay={220} className="grid gap-2 text-sm text-ink-700">
                 {landing.benefits.map((benefit) => (
                   <li key={benefit}>• {benefit}</li>
                 ))}
-              </ul>
+              </Reveal>
             </div>
             <section id="request">
               <Card className="p-6">

@@ -14,6 +14,7 @@ import { PhoneLink } from '@/components/phone-link';
 import { ProcessTimeline } from '@/components/process-timeline';
 import { WhyDifferent } from '@/components/why-different';
 import { InternalLinks } from '@/components/internal-links';
+import { Reveal } from '@/components/reveal';
 import { SITE } from '@/lib/site';
 import { getServiceByParams, getServicePaths, getServiceUrl, servicesConfig, validateServiceSpecificity } from '@/lib/services';
 
@@ -88,21 +89,25 @@ export default function ServicePage({ params }: { params: { category: string; se
             ]}
           />
           <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
-            <div className="space-y-6 motion-safe:animate-fade-up">
+            <div className="space-y-6">
               {service.urgent ? (
                 <span className="inline-flex rounded-full bg-rose-50 px-3 py-1 text-xs font-semibold text-rose-700">
                   Emergency Service
                 </span>
               ) : null}
-              <h1 className="text-4xl font-semibold text-ink-950 md:text-5xl">{service.name}</h1>
-              <p className="text-lg text-ink-700">
-                {service.description} We dispatch experienced technicians across local neighborhoods with clear pricing and fast response.
-              </p>
-              <div className="flex flex-wrap gap-4 text-xs text-ink-500">
+              <Reveal as="div" delay={60}>
+                <h1 className="text-4xl font-semibold text-ink-950 md:text-5xl">{service.name}</h1>
+              </Reveal>
+              <Reveal as="div" delay={120}>
+                <p className="text-lg text-ink-700">
+                  {service.description} We dispatch experienced technicians across local neighborhoods with clear pricing and fast response.
+                </p>
+              </Reveal>
+              <Reveal as="div" delay={150} className="flex flex-wrap gap-4 text-xs text-ink-500">
                 <span>Last updated {service.lastUpdated}</span>
                 <span>Last reviewed {service.lastReviewed}</span>
-              </div>
-              <div className="flex flex-wrap gap-3">
+              </Reveal>
+              <Reveal as="div" delay={180} className="flex flex-wrap gap-3">
                 <PhoneLink asButton eventName="service_cta_click" serviceName={service.name}>
                   Call Now
                 </PhoneLink>
@@ -112,16 +117,18 @@ export default function ServicePage({ params }: { params: { category: string; se
                     Urgent response prioritized
                   </span>
                 ) : null}
-              </div>
-              <ul className="grid gap-2 text-sm text-ink-700">
+              </Reveal>
+              <Reveal as="ul" delay={220} className="grid gap-2 text-sm text-ink-700">
                 <li>• Same-day availability for most requests</li>
                 <li>• Licensed, insured, and background-checked technicians</li>
                 <li>• Transparent, upfront pricing before work begins</li>
                 <li>• Local support across Hamilton and the GTA</li>
-              </ul>
-              <Link href={categoryAnchor} className="inline-flex text-sm font-semibold text-teal-700">
-                Back to {service.category.name}
-              </Link>
+              </Reveal>
+              <Reveal as="div" delay={260}>
+                <Link href={categoryAnchor} className="inline-flex text-sm font-semibold text-teal-700">
+                  Back to {service.category.name}
+                </Link>
+              </Reveal>
             </div>
             <div className="relative aspect-[4/3] overflow-hidden rounded-3xl bg-slate-100 shadow-soft">
               <Image
