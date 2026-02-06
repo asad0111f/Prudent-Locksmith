@@ -99,7 +99,7 @@ export default function EmergencyPage() {
               <Card>
                 <h2 className="text-lg font-semibold text-ink-950">Immediate help line</h2>
                 <p className="mt-2 text-sm text-ink-700">Speak with a dispatcher now for urgent service.</p>
-                <PhoneLink asButton className="mt-4 w-full" eventName="emergency_cta_click">
+                <PhoneLink asButton className="mt-4 hidden w-full sm:inline-flex" eventName="emergency_cta_click">
                   Call {SITE.phoneDisplay}
                 </PhoneLink>
               </Card>

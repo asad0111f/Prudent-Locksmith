@@ -86,7 +86,7 @@ export default function HomePage() {
                     <p>Need immediate help? Call our live dispatch line.</p>
                     <PhoneLink className="text-base font-semibold text-ink-950">{SITE.phoneDisplay}</PhoneLink>
                   </div>
-                  <PhoneLink asButton className="w-full">Call for Immediate Service</PhoneLink>
+                  <PhoneLink asButton className="hidden w-full sm:inline-flex">Call for Immediate Service</PhoneLink>
                 </div>
               </Card>
             </div>
@@ -187,7 +187,7 @@ export default function HomePage() {
             <Card>
               <h3 className="text-lg font-semibold text-ink-950">Need help now?</h3>
               <p className="mt-2 text-sm text-ink-700">Speak with dispatch for immediate assistance or schedule a visit.</p>
-              <PhoneLink asButton className="mt-4 w-full">Call {SITE.phoneDisplay}</PhoneLink>
+                <PhoneLink asButton className="mt-4 hidden w-full sm:inline-flex">Call {SITE.phoneDisplay}</PhoneLink>
             </Card>
           </div>
         </Container>
@@ -217,7 +217,7 @@ export default function HomePage() {
               <Card>
                 <h3 className="text-lg font-semibold text-ink-950">Emergency dispatch priority</h3>
                 <p className="mt-2 text-sm text-ink-700">Stuck door or lockout? We prioritize urgent calls and confirm your ETA quickly.</p>
-                <PhoneLink asButton className="mt-4 w-full">Call Now</PhoneLink>
+                <PhoneLink asButton className="mt-4 hidden w-full sm:inline-flex">Call Now</PhoneLink>
               </Card>
               <Card>
                 <h3 className="text-lg font-semibold text-ink-950">Prefer to schedule?</h3>

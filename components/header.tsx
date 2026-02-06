@@ -19,7 +19,7 @@ export function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200/70 bg-header-gradient backdrop-blur">
+    <header className="sticky top-0 z-[90] border-b border-slate-200/70 bg-header-gradient backdrop-blur">
       <Container>
         <div className="flex items-center justify-between py-4">
           <Link href="/" className="inline-flex items-center gap-2">
@@ -303,19 +303,19 @@ function MobileMenu() {
         onClick={() => setOpen(true)}
         aria-expanded={open}
         aria-controls="mobile-menu-drawer"
-        className="inline-flex min-h-[44px] items-center justify-center rounded-md border border-slate-200 px-3 text-sm font-semibold text-ink-950"
+        className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-md border border-slate-200 px-3 text-sm font-semibold text-ink-950"
       >
         Menu
       </button>
       {open ? (
-        <div className="fixed inset-0 z-[60] md:hidden">
+        <div className="fixed inset-0 z-[100] md:hidden">
           <div className="absolute inset-0 bg-black/40" aria-hidden="true" />
           <div
             ref={panelRef}
             id="mobile-menu-drawer"
             role="dialog"
             aria-modal="true"
-            className="absolute right-0 top-0 h-full w-[85vw] max-w-sm overflow-y-auto bg-white px-5 pb-10 pt-6 shadow-soft"
+            className="absolute right-0 top-0 z-[110] h-full w-[85vw] max-w-sm overflow-y-auto bg-white px-5 pb-10 pt-6 shadow-soft"
           >
             <div className="flex items-center justify-between">
               <p className="text-sm font-semibold text-ink-950">Menu</p>

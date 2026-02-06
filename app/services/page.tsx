@@ -84,7 +84,7 @@ export default function ServicesPage() {
                   <Card className="space-y-4">
                     <h2 className="text-xl font-semibold text-ink-950">Emergency dispatch</h2>
                     <p className="text-sm text-ink-700">Need help fast? We prioritize urgent requests and confirm ETAs before dispatch.</p>
-                    <PhoneLink asButton className="w-full">Call {SITE.phoneDisplay}</PhoneLink>
+                    <PhoneLink asButton className="hidden w-full sm:inline-flex">Call {SITE.phoneDisplay}</PhoneLink>
                   </Card>
                 </div>
               </div>

@@ -141,7 +141,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
                 <Card>
                   <h2 className="text-lg font-semibold text-ink-950">Need help today?</h2>
                   <p className="mt-2 text-sm text-ink-700">Call for immediate availability in {city.name}.</p>
-                  <PhoneLink asButton className="mt-4 w-full" city={city.name}>
+                  <PhoneLink asButton className="mt-4 hidden w-full sm:inline-flex" city={city.name}>
                     Call {SITE.phoneDisplay}
                   </PhoneLink>
                 </Card>
