@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -265,7 +266,12 @@ function MobileMenu() {
     return pathname?.startsWith(path) ?? false;
   };
   const [open, setOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const panelRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
@@ -307,107 +313,110 @@ function MobileMenu() {
       >
         Menu
       </button>
-      {open ? (
-        <div className="fixed inset-0 z-[100] md:hidden">
-          <div className="absolute inset-0 bg-black/40" aria-hidden="true" />
-          <div
-            ref={panelRef}
-            id="mobile-menu-drawer"
-            role="dialog"
-            aria-modal="true"
-            className="absolute right-0 top-0 z-[110] h-full w-[85vw] max-w-sm overflow-y-auto bg-white px-5 pb-10 pt-6 shadow-soft"
-          >
-            <div className="flex items-center justify-between">
-              <p className="text-sm font-semibold text-ink-950">Menu</p>
-              <button
-                type="button"
-                onClick={() => setOpen(false)}
-                className="min-h-[44px] text-sm font-semibold text-ink-700"
-              >
-                Close
-              </button>
-            </div>
-            <nav className="mt-4 flex flex-col gap-3 text-sm font-medium">
-              <Link
-                href="/"
-                className={clsx('rounded-md px-3 py-2 text-ink-700 hover:text-ink-950', isActive('/') && 'bg-slate-100 text-ink-950')}
-                onClick={() => setOpen(false)}
-              >
-                Home
-              </Link>
-              <Link
-                href="/emergency"
-                className={clsx('rounded-md px-3 py-2 text-ink-700 hover:text-ink-950', isActive('/emergency') && 'bg-slate-100 text-ink-950')}
-                onClick={() => setOpen(false)}
-              >
-                Emergency
-              </Link>
-              <div className="rounded-xl border border-slate-200/70 p-3">
-                <p className="text-xs font-semibold uppercase tracking-wide text-ink-500">Top services</p>
-                <ul className="mt-3 space-y-2">
-                  {getEmergencyServices().slice(0, 4).map((service) => (
-                    <li key={service.id}>
-                      <Link
-                        href={`/services/${service.category.slug}/${service.slug}`}
-                        className="block rounded-md px-2 py-2 text-ink-700 hover:text-ink-950"
-                        onClick={() => setOpen(false)}
-                      >
-                        {service.shortLabel}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
+      {mounted && open
+        ? createPortal(
+          <div className="fixed inset-0 z-[200] md:hidden">
+            <div className="absolute inset-0 bg-black/40" aria-hidden="true" />
+            <div
+              ref={panelRef}
+              id="mobile-menu-drawer"
+              role="dialog"
+              aria-modal="true"
+              className="absolute right-0 top-0 z-[210] h-full w-[85vw] max-w-sm overflow-y-auto bg-white px-5 pb-10 pt-6 shadow-soft"
+            >
+              <div className="flex items-center justify-between">
+                <p className="text-sm font-semibold text-ink-950">Menu</p>
+                <button
+                  type="button"
+                  onClick={() => setOpen(false)}
+                  className="min-h-[44px] text-sm font-semibold text-ink-700"
+                >
+                  Close
+                </button>
               </div>
-              <details className="rounded-xl border border-slate-200/70 p-3">
-                <summary className="cursor-pointer list-none text-sm font-semibold text-ink-950">Services</summary>
-                <div className="mt-3 grid gap-4">
-                  {servicesConfig.map((category) => (
-                    <details key={category.slug}>
-                      <summary className="cursor-pointer list-none text-xs font-semibold uppercase tracking-wide text-ink-500">
-                        {category.label}
-                      </summary>
-                      <ul className="mt-2 space-y-2 text-sm text-ink-700">
-                        {category.services.map((service) => (
-                          <li key={service.id}>
-                            <Link
-                              href={`/services/${category.slug}/${service.slug}`}
-                              className="block rounded-md px-2 py-2 transition hover:text-ink-950"
-                              onClick={() => setOpen(false)}
-                            >
-                              {service.shortLabel}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </details>
-                  ))}
+              <nav className="mt-4 flex flex-col gap-3 text-sm font-medium">
+                <Link
+                  href="/"
+                  className={clsx('rounded-md px-3 py-2 text-ink-700 hover:text-ink-950', isActive('/') && 'bg-slate-100 text-ink-950')}
+                  onClick={() => setOpen(false)}
+                >
+                  Home
+                </Link>
+                <Link
+                  href="/emergency"
+                  className={clsx('rounded-md px-3 py-2 text-ink-700 hover:text-ink-950', isActive('/emergency') && 'bg-slate-100 text-ink-950')}
+                  onClick={() => setOpen(false)}
+                >
+                  Emergency
+                </Link>
+                <div className="rounded-xl border border-slate-200/70 p-3">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-ink-500">Top services</p>
+                  <ul className="mt-3 space-y-2">
+                    {getEmergencyServices().slice(0, 4).map((service) => (
+                      <li key={service.id}>
+                        <Link
+                          href={`/services/${service.category.slug}/${service.slug}`}
+                          className="block rounded-md px-2 py-2 text-ink-700 hover:text-ink-950"
+                          onClick={() => setOpen(false)}
+                        >
+                          {service.shortLabel}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-              </details>
-              <Link
-                href="/service-areas"
-                className={clsx('rounded-md px-3 py-2 text-ink-700 hover:text-ink-950', isActive('/service-areas') && 'bg-slate-100 text-ink-950')}
-                onClick={() => setOpen(false)}
-              >
-                Service Areas
-              </Link>
-              <Link
-                href="/about"
-                className={clsx('rounded-md px-3 py-2 text-ink-700 hover:text-ink-950', isActive('/about') && 'bg-slate-100 text-ink-950')}
-                onClick={() => setOpen(false)}
-              >
-                About
-              </Link>
-              <Link
-                href="/contact"
-                className={clsx('rounded-md px-3 py-2 text-ink-700 hover:text-ink-950', isActive('/contact') && 'bg-slate-100 text-ink-950')}
-                onClick={() => setOpen(false)}
-              >
-                Contact
-              </Link>
-            </nav>
-          </div>
-        </div>
-      ) : null}
+                <details className="rounded-xl border border-slate-200/70 p-3">
+                  <summary className="cursor-pointer list-none text-sm font-semibold text-ink-950">Services</summary>
+                  <div className="mt-3 grid gap-4">
+                    {servicesConfig.map((category) => (
+                      <details key={category.slug}>
+                        <summary className="cursor-pointer list-none text-xs font-semibold uppercase tracking-wide text-ink-500">
+                          {category.label}
+                        </summary>
+                        <ul className="mt-2 space-y-2 text-sm text-ink-700">
+                          {category.services.map((service) => (
+                            <li key={service.id}>
+                              <Link
+                                href={`/services/${category.slug}/${service.slug}`}
+                                className="block rounded-md px-2 py-2 transition hover:text-ink-950"
+                                onClick={() => setOpen(false)}
+                              >
+                                {service.shortLabel}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </details>
+                    ))}
+                  </div>
+                </details>
+                <Link
+                  href="/service-areas"
+                  className={clsx('rounded-md px-3 py-2 text-ink-700 hover:text-ink-950', isActive('/service-areas') && 'bg-slate-100 text-ink-950')}
+                  onClick={() => setOpen(false)}
+                >
+                  Service Areas
+                </Link>
+                <Link
+                  href="/about"
+                  className={clsx('rounded-md px-3 py-2 text-ink-700 hover:text-ink-950', isActive('/about') && 'bg-slate-100 text-ink-950')}
+                  onClick={() => setOpen(false)}
+                >
+                  About
+                </Link>
+                <Link
+                  href="/contact"
+                  className={clsx('rounded-md px-3 py-2 text-ink-700 hover:text-ink-950', isActive('/contact') && 'bg-slate-100 text-ink-950')}
+                  onClick={() => setOpen(false)}
+                >
+                  Contact
+                </Link>
+              </nav>
+            </div>
+          </div>,
+          document.body
+        )
+        : null}
     </>
   );
 }
