@@ -54,7 +54,7 @@ export function PhoneLink({
   const pageSource = source ?? getPageSource(pathname);
   const content = children ?? SITE.phoneDisplay;
 
-  function handleClick() {
+  function handleClick(event?: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) {
     const payload = {
       path: pathname || '',
       source: pageSource,
@@ -66,6 +66,11 @@ export function PhoneLink({
     trackEvent('call_click', payload);
     if (eventName && eventName !== 'call_click') {
       trackEvent(eventName, payload);
+    }
+
+    if (typeof window !== 'undefined') {
+      event?.preventDefault?.();
+      window.location.href = SITE.phoneHref;
     }
   }
 

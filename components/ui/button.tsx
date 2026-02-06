@@ -37,6 +37,9 @@ export function Button({ href, variant = 'primary', size = 'md', className, ...p
   const classes = clsx(base, sizes[size], variants[variant], className);
 
   if (href) {
+    if (href.startsWith('tel:') || href.startsWith('mailto:') || href.startsWith('sms:')) {
+      return <a href={href} className={classes} {...(props as AnchorHTMLAttributes<HTMLAnchorElement>)} />;
+    }
     return <Link href={href} className={classes} {...(props as AnchorHTMLAttributes<HTMLAnchorElement>)} />;
   }
 
