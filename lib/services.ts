@@ -1,3 +1,5 @@
+import { IMAGES } from '@/lib/images';
+
 export type ServiceFaq = { q: string; a: string };
 
 export type ServiceItem = {
@@ -10,6 +12,8 @@ export type ServiceItem = {
   urgent: boolean;
   image: string;
   imageAlt: string;
+  supportImage: string;
+  supportImageAlt: string;
   related: string[];
   commonProblems: string[];
   process: string[];
@@ -47,8 +51,10 @@ const baseCategories = [
         shortDescription: 'Rapid diagnostics when your garage door is stuck closed or halfway.',
         description: 'We restore safe operation quickly when your garage door refuses to open or gets stuck mid-cycle.',
         urgent: true,
-        image: '/images/services/garage-door-not-opening-or-stuck.svg',
+        image: IMAGES.services.garageDoorRepair1,
         imageAlt: 'Technician inspecting a garage door that is stuck closed.',
+        supportImage: IMAGES.services.garageDoorRepair2,
+        supportImageAlt: 'Close-up of garage door springs and hardware being inspected.',
         related: [
           'garage-door-repair/broken-garage-door-spring-repair',
           'garage-door-repair/track-repair-or-realignment',
@@ -88,8 +94,10 @@ const baseCategories = [
         shortDescription: 'Safe spring replacement with correct tension and balance.',
         description: 'Replace snapped or worn springs to restore smooth, safe garage door operation.',
         urgent: true,
-        image: '/images/services/broken-garage-door-spring-repair.svg',
+        image: IMAGES.services.garageDoorRepair2,
         imageAlt: 'Technician replacing a broken garage door spring safely.',
+        supportImage: IMAGES.services.garageDoorRepair3,
+        supportImageAlt: 'Garage door track and roller system during repair.',
         related: [
           'garage-door-repair/garage-door-not-opening-or-stuck',
           'garage-door-repair/door-alignment-and-safety-inspection',
@@ -128,8 +136,10 @@ const baseCategories = [
         shortDescription: 'Repair frayed cables to prevent door imbalance and failure.',
         description: 'Restore safe lifting power with cable repair or replacement when wear is visible.',
         urgent: false,
-        image: '/images/services/garage-door-cable-repair-or-replacement.svg',
+        image: IMAGES.services.garageDoorRepair3,
         imageAlt: 'Close-up of a garage door cable being replaced.',
+        supportImage: IMAGES.services.garageDoorRepair1,
+        supportImageAlt: 'Technician working on a garage door mechanism.',
         related: [
           'garage-door-repair/track-repair-or-realignment',
           'garage-door-repair/door-alignment-and-safety-inspection',
@@ -155,8 +165,10 @@ const baseCategories = [
         shortDescription: 'Get doors running straight with precision track alignment.',
         description: 'Repair bent tracks and realign hardware so your door runs smoothly and quietly.',
         urgent: false,
-        image: '/images/services/track-repair-or-realignment.svg',
+        image: IMAGES.services.garageDoorRepair3,
         imageAlt: 'Technician aligning a garage door track for smooth movement.',
+        supportImage: IMAGES.services.garageDoorRepair1,
+        supportImageAlt: 'Technician adjusting garage door hardware.',
         related: [
           'garage-door-repair/garage-door-not-opening-or-stuck',
           'garage-door-repair/garage-door-cable-repair-or-replacement',
@@ -182,8 +194,10 @@ const baseCategories = [
         shortDescription: 'Full safety check with balance and alignment adjustments.',
         description: 'Ensure your garage door is balanced, aligned, and safe for daily use.',
         urgent: false,
-        image: '/images/services/door-alignment-and-safety-inspection.svg',
+        image: IMAGES.services.garageDoorRepair2,
         imageAlt: 'Technician performing a garage door balance and safety inspection.',
+        supportImage: IMAGES.services.garageDoorRepair3,
+        supportImageAlt: 'Garage door track and safety rollers during inspection.',
         related: [
           'garage-door-repair/track-repair-or-realignment',
           'garage-door-repair/garage-door-cable-repair-or-replacement',
@@ -216,8 +230,10 @@ const baseCategories = [
         shortDescription: 'Professional opener installation with setup and testing.',
         description: 'Install a new garage door opener with safe mounting, programming, and full safety checks.',
         urgent: false,
-        image: '/images/services/new-garage-door-opener-installation.svg',
+        image: IMAGES.services.garageOpener1,
         imageAlt: 'Garage door opener being installed on the ceiling.',
+        supportImage: IMAGES.services.garageOpener2,
+        supportImageAlt: 'Hand holding a garage door remote for programming.',
         related: [
           'garage-door-opener-install-and-service/wi-fi-app-enabled-opener-upgrades',
           'garage-door-opener-install-and-service/belt-drive-garage-door-openers',
@@ -243,8 +259,10 @@ const baseCategories = [
         shortDescription: 'Upgrade to smart control with secure mobile access.',
         description: 'Add smart features for remote access, alerts, and controlled entry to your garage.',
         urgent: false,
-        image: '/images/services/wi-fi-app-enabled-opener-upgrades.svg',
+        image: IMAGES.services.garageOpener2,
         imageAlt: 'Smartphone controlling a garage door opener app.',
+        supportImage: IMAGES.services.garageOpener1,
+        supportImageAlt: 'Garage door opener hardware mounted above a door.',
         related: [
           'garage-door-opener-install-and-service/new-garage-door-opener-installation',
           'garage-door-opener-install-and-service/remote-and-wall-control-programming',
@@ -270,8 +288,10 @@ const baseCategories = [
         shortDescription: 'Quiet, smooth belt-drive opener installation and service.',
         description: 'Install or service belt-drive openers for quieter, smoother garage access.',
         urgent: false,
-        image: '/images/services/belt-drive-garage-door-openers.svg',
+        image: IMAGES.services.garageOpener1,
         imageAlt: 'Belt-drive garage door opener system mounted above a door.',
+        supportImage: IMAGES.services.garageOpener2,
+        supportImageAlt: 'Garage door remote and control panel close-up.',
         related: [
           'garage-door-opener-install-and-service/new-garage-door-opener-installation',
           'garage-door-opener-install-and-service/opener-belt-replacement',
@@ -297,8 +317,10 @@ const baseCategories = [
         shortDescription: 'Replace worn belts to restore smooth opener performance.',
         description: 'Fix slipping or broken belts to keep your opener running quietly and reliably.',
         urgent: false,
-        image: '/images/services/opener-belt-replacement.svg',
+        image: IMAGES.services.garageOpener1,
         imageAlt: 'Technician replacing a garage door opener belt.',
+        supportImage: IMAGES.services.garageOpener2,
+        supportImageAlt: 'Remote control used for testing opener function.',
         related: [
           'garage-door-opener-install-and-service/belt-drive-garage-door-openers',
           'garage-door-opener-install-and-service/remote-and-wall-control-programming',
@@ -324,8 +346,10 @@ const baseCategories = [
         shortDescription: 'Program remotes, keypads, and wall controls quickly.',
         description: 'Set up new remotes and wall controls for secure, reliable garage access.',
         urgent: false,
-        image: '/images/services/remote-and-wall-control-programming.svg',
+        image: IMAGES.services.garageOpener2,
         imageAlt: 'Hand holding a garage door remote being programmed.',
+        supportImage: IMAGES.services.garageOpener1,
+        supportImageAlt: 'Garage door opener motor housing mounted on the ceiling.',
         related: [
           'garage-door-opener-install-and-service/wi-fi-app-enabled-opener-upgrades',
           'garage-door-opener-install-and-service/new-garage-door-opener-installation',
@@ -358,8 +382,10 @@ const baseCategories = [
         shortDescription: 'Quick, damage-minimized entry for residential lockouts.',
         description: 'Regain access quickly with safe entry methods and respectful service.',
         urgent: true,
-        image: '/images/services/home-and-apartment-lockouts.svg',
+        image: IMAGES.services.residentialLock2,
         imageAlt: 'Locksmith assisting a homeowner with a front door lockout.',
+        supportImage: IMAGES.services.residentialLock1,
+        supportImageAlt: 'Close-up of a residential deadbolt and door hardware.',
         related: [
           'residential-locksmith-services/lock-repair-and-replacement',
           'residential-locksmith-services/rekeying-services',
@@ -385,8 +411,10 @@ const baseCategories = [
         shortDescription: 'Fix worn locks or replace them with stronger hardware.',
         description: 'Repair or replace residential locks to improve security and smooth operation.',
         urgent: false,
-        image: '/images/services/lock-repair-and-replacement.svg',
+        image: IMAGES.services.residentialLock1,
         imageAlt: 'Locksmith installing a new deadbolt on a front door.',
+        supportImage: IMAGES.services.residentialLock3,
+        supportImageAlt: 'Keys and lock cylinder prepared for installation.',
         related: [
           'residential-locksmith-services/lock-cylinder-replacement',
           'residential-locksmith-services/rekeying-services',
@@ -412,8 +440,10 @@ const baseCategories = [
         shortDescription: 'Replace worn cylinders for smoother, safer access.',
         description: 'Install new lock cylinders to improve reliability and security without replacing the full lock.',
         urgent: false,
-        image: '/images/services/lock-cylinder-replacement.svg',
+        image: IMAGES.services.residentialLock3,
         imageAlt: 'Close-up of a lock cylinder being replaced.',
+        supportImage: IMAGES.services.residentialLock1,
+        supportImageAlt: 'Residential door lock hardware ready for service.',
         related: [
           'residential-locksmith-services/lock-repair-and-replacement',
           'residential-locksmith-services/rekeying-services',
@@ -439,8 +469,10 @@ const baseCategories = [
         shortDescription: 'Change key access without replacing the full lock.',
         description: 'Rekey your locks to control access after a move, staffing change, or lost keys.',
         urgent: false,
-        image: '/images/services/rekeying-services.svg',
+        image: IMAGES.services.residentialLock3,
         imageAlt: 'Locksmith rekeying a residential lock cylinder.',
+        supportImage: IMAGES.services.residentialLock2,
+        supportImageAlt: 'Locksmith preparing tools at a residential door.',
         related: [
           'residential-locksmith-services/lock-repair-and-replacement',
           'residential-locksmith-services/lock-cylinder-replacement',
@@ -473,8 +505,10 @@ const baseCategories = [
         shortDescription: 'Fast vehicle entry with careful, non-damaging methods.',
         description: 'Locked out of your car? We provide quick, safe entry wherever you are.',
         urgent: true,
-        image: '/images/services/car-lockouts.svg',
+        image: IMAGES.services.autoLockout1,
         imageAlt: 'Locksmith opening a car door for a lockout service.',
+        supportImage: IMAGES.services.autoLockout2,
+        supportImageAlt: 'Car keys and key fob ready for vehicle entry service.',
         related: [
           'automotive-locksmith-services/mobile-vehicle-entry-service',
           'residential-locksmith-services/home-and-apartment-lockouts',
@@ -500,8 +534,10 @@ const baseCategories = [
         shortDescription: 'On-location vehicle access with fast dispatch.',
         description: 'Mobile service brings professional vehicle entry to your location quickly.',
         urgent: false,
-        image: '/images/services/mobile-vehicle-entry-service.svg',
+        image: IMAGES.services.autoLockout2,
         imageAlt: 'Mobile locksmith van parked for vehicle entry service.',
+        supportImage: IMAGES.services.autoLockout1,
+        supportImageAlt: 'Technician assisting with a vehicle door lock.',
         related: [
           'automotive-locksmith-services/car-lockouts',
           'residential-locksmith-services/home-and-apartment-lockouts',
@@ -529,8 +565,10 @@ const baseCategories = [
         shortDescription: 'Keep storefronts secure and accessible for customers.',
         description: 'Repair storefront locks quickly to protect business security and access.',
         urgent: false,
-        image: '/images/services/storefront-lock-repair.svg',
+        image: IMAGES.services.commercialLock1,
         imageAlt: 'Storefront door lock being repaired by a technician.',
+        supportImage: IMAGES.services.commercialLock2,
+        supportImageAlt: 'Close-up of a commercial door lock mechanism.',
         related: [
           'commercial-storefront-lock-services/mortise-lock-service',
           'commercial-storefront-lock-services/commercial-door-lock-troubleshooting',
@@ -556,8 +594,10 @@ const baseCategories = [
         shortDescription: 'Service and repair for commercial mortise locks.',
         description: 'Maintain or repair mortise locks for reliable commercial security.',
         urgent: false,
-        image: '/images/services/mortise-lock-service.svg',
+        image: IMAGES.services.commercialLock2,
         imageAlt: 'Commercial mortise lock being serviced on a door.',
+        supportImage: IMAGES.services.commercialLock1,
+        supportImageAlt: 'Technician servicing a storefront door lock.',
         related: [
           'commercial-storefront-lock-services/mortise-cylinder-replacement',
           'commercial-storefront-lock-services/commercial-door-lock-troubleshooting',
@@ -583,8 +623,10 @@ const baseCategories = [
         shortDescription: 'Replace worn mortise cylinders to improve security.',
         description: 'Install new mortise cylinders to restore secure access control.',
         urgent: false,
-        image: '/images/services/mortise-cylinder-replacement.svg',
+        image: IMAGES.services.commercialLock2,
         imageAlt: 'Close-up of a mortise cylinder replacement in progress.',
+        supportImage: IMAGES.services.commercialLock1,
+        supportImageAlt: 'Storefront lock hardware being inspected.',
         related: [
           'commercial-storefront-lock-services/mortise-lock-service',
           'commercial-storefront-lock-services/commercial-door-lock-troubleshooting',
@@ -610,8 +652,10 @@ const baseCategories = [
         shortDescription: 'Diagnosis and repair for commercial door lock issues.',
         description: 'Resolve complex lock problems with on-site troubleshooting and repairs.',
         urgent: false,
-        image: '/images/services/commercial-door-lock-troubleshooting.svg',
+        image: IMAGES.services.commercialLock1,
         imageAlt: 'Technician troubleshooting a commercial door lock.',
+        supportImage: IMAGES.services.commercialLock2,
+        supportImageAlt: 'Commercial door lock components on a work surface.',
         related: [
           'commercial-storefront-lock-services/storefront-lock-repair',
           'commercial-storefront-lock-services/mortise-lock-service',
@@ -698,3 +742,4 @@ export function validateServiceSpecificity() {
     }
   }
 }
+

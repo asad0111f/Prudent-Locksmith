@@ -10,7 +10,9 @@ import { ReviewsSection } from '@/components/reviews';
 import { TrustStrip } from '@/components/trust-strip';
 import { PhoneLink } from '@/components/phone-link';
 import { Reveal } from '@/components/reveal';
+import { HeroImage, ServiceImage } from '@/components/site-image';
 import { SITE } from '@/lib/site';
+import { IMAGES } from '@/lib/images';
 import { getEmergencyServices, getServiceById, servicesConfig } from '@/lib/services';
 import { RequestServiceTrigger } from '@/components/request-service-trigger';
 
@@ -72,11 +74,19 @@ export default function ServicesPage() {
                   <Button href="/contact" variant="secondary" className="w-full sm:w-auto">Request Service</Button>
                 </Reveal>
               </div>
-                <Card className="space-y-4">
-                  <h2 className="text-xl font-semibold text-ink-950">Emergency dispatch</h2>
-                  <p className="text-sm text-ink-700">Need help fast? We prioritize urgent requests and confirm ETAs before dispatch.</p>
-                  <PhoneLink asButton className="w-full">Call {SITE.phoneDisplay}</PhoneLink>
-                </Card>
+                <div className="space-y-6">
+                  <HeroImage
+                    src={IMAGES.hero.services}
+                    alt="Locksmith tools prepared for a service call."
+                    priority
+                    sizes="(max-width: 1024px) 100vw, 460px"
+                  />
+                  <Card className="space-y-4">
+                    <h2 className="text-xl font-semibold text-ink-950">Emergency dispatch</h2>
+                    <p className="text-sm text-ink-700">Need help fast? We prioritize urgent requests and confirm ETAs before dispatch.</p>
+                    <PhoneLink asButton className="w-full">Call {SITE.phoneDisplay}</PhoneLink>
+                  </Card>
+                </div>
               </div>
             </Container>
           </div>
@@ -101,6 +111,12 @@ export default function ServicesPage() {
             {emergencyServices.map((service) => (
               <Reveal key={service.id} as="div">
                 <Card className="group">
+                  <ServiceImage
+                    src={service.image}
+                    alt={service.imageAlt}
+                    className="overflow-hidden"
+                    imageClassName="group-hover:scale-[1.03]"
+                  />
                   <h3 className="text-lg font-semibold text-ink-950">{service.shortLabel}</h3>
                   <p className="mt-2 text-sm text-ink-700">{service.shortDescription}</p>
                   <div className="mt-4 flex flex-wrap items-center gap-3">

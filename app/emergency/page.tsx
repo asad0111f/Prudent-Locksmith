@@ -11,7 +11,9 @@ import { PhoneLink } from '@/components/phone-link';
 import { ProcessTimeline } from '@/components/process-timeline';
 import { WhyDifferent } from '@/components/why-different';
 import { Reveal } from '@/components/reveal';
+import { HeroImage, ServiceImage } from '@/components/site-image';
 import { SITE } from '@/lib/site';
+import { IMAGES } from '@/lib/images';
 import { getServiceById } from '@/lib/services';
 
 export const metadata: Metadata = {
@@ -87,13 +89,21 @@ export default function EmergencyPage() {
                 <li>• Licensed where required and insured technicians</li>
               </Reveal>
             </div>
-            <Card>
-              <h2 className="text-lg font-semibold text-ink-950">Immediate help line</h2>
-              <p className="mt-2 text-sm text-ink-700">Speak with a dispatcher now for urgent service.</p>
-              <PhoneLink asButton className="mt-4 w-full" eventName="emergency_cta_click">
-                Call {SITE.phoneDisplay}
-              </PhoneLink>
-            </Card>
+            <div className="space-y-6">
+              <HeroImage
+                src={IMAGES.emergency.response}
+                alt="Emergency locksmith technician responding after dark."
+                priority
+                sizes="(max-width: 1024px) 100vw, 460px"
+              />
+              <Card>
+                <h2 className="text-lg font-semibold text-ink-950">Immediate help line</h2>
+                <p className="mt-2 text-sm text-ink-700">Speak with a dispatcher now for urgent service.</p>
+                <PhoneLink asButton className="mt-4 w-full" eventName="emergency_cta_click">
+                  Call {SITE.phoneDisplay}
+                </PhoneLink>
+              </Card>
+            </div>
           </div>
           </Container>
         </div>
@@ -113,6 +123,12 @@ export default function EmergencyPage() {
           <div className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             {urgentServices.map((service) => (
               <Card key={service.id} className="group">
+                <ServiceImage
+                  src={service.image}
+                  alt={service.imageAlt}
+                  className="overflow-hidden"
+                  imageClassName="group-hover:scale-[1.03]"
+                />
                 <h3 className="text-lg font-semibold text-ink-950">{service.shortLabel}</h3>
                 <p className="mt-2 text-sm text-ink-700">{service.shortDescription}</p>
                 <Link href={`/services/${service.category.slug}/${service.slug}`} className="mt-4 inline-flex text-sm font-semibold text-teal-700">

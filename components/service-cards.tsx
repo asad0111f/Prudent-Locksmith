@@ -1,24 +1,21 @@
 import type { ServiceCategory, ServiceItem } from '@/lib/services';
-import Image from 'next/image';
 import Link from 'next/link';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Reveal } from '@/components/reveal';
 import { getServiceUrl } from '@/lib/services';
+import { ServiceImage } from '@/components/site-image';
 
 export function ServiceCard({ service, index = 0 }: { service: ServiceItem; index?: number }) {
   return (
     <Reveal as="div" delay={index * 60}>
       <Card className="group">
-        <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-slate-100">
-          <Image
-            src={service.image}
-            alt={service.imageAlt}
-            fill
-            sizes="(max-width: 1024px) 100vw, 360px"
-            className="object-cover transition duration-300 group-hover:scale-[1.03]"
-          />
-        </div>
+        <ServiceImage
+          src={service.image}
+          alt={service.imageAlt}
+          className="overflow-hidden"
+          imageClassName="group-hover:scale-[1.03]"
+        />
         <div className="mt-4 flex items-center justify-between">
           <h3 className="text-lg font-semibold text-ink-950">{service.shortLabel}</h3>
           {service.urgent ? <Badge className="bg-rose-50 text-rose-700">Emergency</Badge> : null}

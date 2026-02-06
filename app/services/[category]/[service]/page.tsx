@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { RequestServiceTrigger } from '@/components/request-service-trigger';
@@ -15,6 +14,7 @@ import { ProcessTimeline } from '@/components/process-timeline';
 import { WhyDifferent } from '@/components/why-different';
 import { InternalLinks } from '@/components/internal-links';
 import { Reveal } from '@/components/reveal';
+import { FeatureImage, HeroImage, ServiceImage } from '@/components/site-image';
 import { SITE } from '@/lib/site';
 import { getServiceByParams, getServicePaths, getServiceUrl, servicesConfig, validateServiceSpecificity } from '@/lib/services';
 
@@ -132,16 +132,7 @@ export default function ServicePage({ params }: { params: { category: string; se
                 </Link>
               </Reveal>
             </div>
-            <div className="relative aspect-[4/3] overflow-hidden rounded-3xl bg-slate-100 shadow-soft">
-              <Image
-                src={service.image}
-                alt={service.imageAlt}
-                fill
-                priority
-                sizes="(max-width: 1024px) 100vw, 520px"
-                className="object-cover"
-              />
-            </div>
+            <HeroImage src={service.image} alt={service.imageAlt} priority />
           </div>
           </Container>
         </div>
@@ -166,6 +157,10 @@ export default function ServicePage({ params }: { params: { category: string; se
                     <li key={item}>• {item}</li>
                   ))}
                 </ul>
+              </div>
+              <div className="space-y-4">
+                <h2 className="text-2xl font-semibold text-ink-950 sm:text-3xl">Service in action</h2>
+                <FeatureImage src={service.supportImage} alt={service.supportImageAlt} sizes="(max-width: 1024px) 100vw, 600px" />
               </div>
               <div className="space-y-4">
                 <h2 className="text-2xl font-semibold text-ink-950 sm:text-3xl">Our process</h2>
@@ -206,15 +201,12 @@ export default function ServicePage({ params }: { params: { category: string; se
           <div className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {relatedServices.map((item) => (
               <Card key={item.id} className="group">
-                <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-slate-100">
-                  <Image
-                    src={item.image}
-                    alt={item.imageAlt}
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 360px"
-                    className="object-cover transition duration-300 group-hover:scale-[1.03]"
-                  />
-                </div>
+                <ServiceImage
+                  src={item.image}
+                  alt={item.imageAlt}
+                  className="overflow-hidden"
+                  imageClassName="group-hover:scale-[1.03]"
+                />
                 <h3 className="mt-4 text-lg font-semibold text-ink-950">{item.shortLabel}</h3>
                 <p className="mt-2 text-sm text-ink-700">{item.shortDescription}</p>
                 <Link href={getServiceUrl(item.category.slug, item.slug)} className="mt-4 inline-flex text-sm font-semibold text-teal-700">

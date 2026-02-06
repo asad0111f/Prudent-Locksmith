@@ -11,7 +11,9 @@ import { ReviewsSection } from '@/components/reviews';
 import { TrustStrip } from '@/components/trust-strip';
 import { PhoneLink } from '@/components/phone-link';
 import { Reveal } from '@/components/reveal';
+import { FeatureImage, HeroImage, ServiceImage } from '@/components/site-image';
 import { SITE } from '@/lib/site';
+import { IMAGES } from '@/lib/images';
 
 export const metadata: Metadata = {
   title: 'Locksmith & Garage Door Service in Your Area',
@@ -64,22 +66,30 @@ export default function HomePage() {
                 <li>• Residential, automotive, and commercial support</li>
               </Reveal>
             </div>
-            <Card className="p-8">
-              <div className="space-y-4">
-                <div className="flex items-center gap-3">
-                  <Image src="/logo-mark.svg" alt="Prudent" width={48} height={48} />
-                  <div>
-                    <p className="text-sm font-semibold text-ink-950">Local dispatch, reliable techs</p>
-                    <p className="text-xs text-ink-700">Hamilton, ON and nearby areas</p>
+            <div className="space-y-6">
+              <HeroImage
+                src={IMAGES.hero.home}
+                alt="Technician inspecting a residential garage door."
+                priority
+                sizes="(max-width: 1024px) 100vw, 460px"
+              />
+              <Card className="p-8">
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3">
+                    <Image src={IMAGES.brand.logoMark} alt="Prudent" width={48} height={48} />
+                    <div>
+                      <p className="text-sm font-semibold text-ink-950">Local dispatch, reliable techs</p>
+                      <p className="text-xs text-ink-700">Hamilton, ON and nearby areas</p>
+                    </div>
                   </div>
+                  <div className="space-y-3 text-sm text-ink-700">
+                    <p>Need immediate help? Call our live dispatch line.</p>
+                    <PhoneLink className="text-base font-semibold text-ink-950">{SITE.phoneDisplay}</PhoneLink>
+                  </div>
+                  <PhoneLink asButton className="w-full">Call for Immediate Service</PhoneLink>
                 </div>
-                <div className="space-y-3 text-sm text-ink-700">
-                  <p>Need immediate help? Call our live dispatch line.</p>
-                  <PhoneLink className="text-base font-semibold text-ink-950">{SITE.phoneDisplay}</PhoneLink>
-                </div>
-                <PhoneLink asButton className="w-full">Call for Immediate Service</PhoneLink>
-              </div>
-            </Card>
+              </Card>
+            </div>
             </div>
           </Container>
         </div>
@@ -108,31 +118,47 @@ export default function HomePage() {
               {
                 title: 'Garage Door Emergency',
                 text: 'Stuck doors, spring failures, and urgent safety issues.',
-                href: '/services/garage-door-repair/garage-door-not-opening-or-stuck'
+                href: '/services/garage-door-repair/garage-door-not-opening-or-stuck',
+                image: IMAGES.services.garageDoorRepair1,
+                imageAlt: 'Technician inspecting a garage door with tools.'
               },
               {
                 title: 'Garage Door Openers',
                 text: 'New installs, upgrades, belt replacements, and programming.',
-                href: '/services/garage-door-opener-install-and-service/new-garage-door-opener-installation'
+                href: '/services/garage-door-opener-install-and-service/new-garage-door-opener-installation',
+                image: IMAGES.services.garageOpener1,
+                imageAlt: 'Garage door opener hardware mounted above a door.'
               },
               {
                 title: 'Residential Locksmith',
                 text: 'Lockouts, rekeying, cylinder and lock replacement.',
-                href: '/services/residential-locksmith-services/home-and-apartment-lockouts'
+                href: '/services/residential-locksmith-services/home-and-apartment-lockouts',
+                image: IMAGES.services.residentialLock2,
+                imageAlt: 'Locksmith working at a residential front door.'
               },
               {
                 title: 'Automotive Locksmith',
                 text: 'Fast vehicle entry and mobile lockout help.',
-                href: '/services/automotive-locksmith-services/car-lockouts'
+                href: '/services/automotive-locksmith-services/car-lockouts',
+                image: IMAGES.services.autoLockout1,
+                imageAlt: 'Technician assisting with a car door lockout.'
               },
               {
                 title: 'Commercial Locksmith',
                 text: 'Storefront repairs, mortise locks, and troubleshooting.',
-                href: '/services/commercial-storefront-lock-services/storefront-lock-repair'
+                href: '/services/commercial-storefront-lock-services/storefront-lock-repair',
+                image: IMAGES.services.commercialLock1,
+                imageAlt: 'Storefront door lock and handle close-up.'
               }
             ].map((item) => (
               <Reveal key={item.title} as="div">
                 <Card className="group">
+                  <ServiceImage
+                    src={item.image}
+                    alt={item.imageAlt}
+                    className="overflow-hidden"
+                    imageClassName="group-hover:scale-[1.03]"
+                  />
                   <h3 className="text-lg font-semibold text-ink-950">{item.title}</h3>
                   <p className="mt-2 text-sm text-ink-700">{item.text}</p>
                   <Link href={item.href} className="mt-4 inline-flex text-sm font-semibold text-teal-700">
@@ -183,6 +209,11 @@ export default function HomePage() {
               </ul>
             </div>
             <div className="space-y-4">
+              <FeatureImage
+                src={IMAGES.sections.trustTechVan}
+                alt="Service technician beside a branded van with equipment."
+                sizes="(max-width: 1024px) 100vw, 420px"
+              />
               <Card>
                 <h3 className="text-lg font-semibold text-ink-950">Emergency dispatch priority</h3>
                 <p className="mt-2 text-sm text-ink-700">Stuck door or lockout? We prioritize urgent calls and confirm your ETA quickly.</p>
