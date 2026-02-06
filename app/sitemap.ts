@@ -13,9 +13,10 @@ export default function sitemap() {
   const landingPages = getLandingPages()
     .filter((page) => page.enableIndexing)
     .map((page) => `/lp/${page.slug}`);
+  const baseUrl = SITE.sitemapBaseUrl || SITE.baseUrl;
 
   return [...basePages, ...servicePages, ...cityPages, ...landingPages].map((path) => ({
-    url: `${SITE.baseUrl}${path}`,
+    url: `${baseUrl}${path}`,
     lastModified: new Date()
   }));
 }
