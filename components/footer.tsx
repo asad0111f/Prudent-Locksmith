@@ -18,24 +18,12 @@ export function Footer() {
       />
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-slate-950/40 via-slate-950/30 to-slate-950/70" aria-hidden="true" />
       <Container>
-        <div className="relative grid gap-8 py-12 md:grid-cols-4">
+        <div className="relative grid gap-8 py-12 md:grid-cols-3">
           <div>
             <p className="text-lg font-semibold text-white">Prudent</p>
             <p className="mt-3 text-sm text-slate-200">
               Premium locksmith and garage door service with fast response and upfront pricing.
             </p>
-          </div>
-          <div>
-            <p className="text-sm font-semibold text-white">Quick links</p>
-            <ul className="mt-3 space-y-2 text-sm text-slate-200">
-              <li><Link href="/" className="transition hover:text-white">Home</Link></li>
-              <li><Link href="/services" className="transition hover:text-white">Services</Link></li>
-              <li><Link href="/service-areas" className="transition hover:text-white">Service Areas</Link></li>
-              <li><Link href="/about" className="transition hover:text-white">About</Link></li>
-              <li><Link href="/contact" className="transition hover:text-white">Contact</Link></li>
-              <li><Link href="/privacy" className="transition hover:text-white">Privacy</Link></li>
-              <li><Link href="/terms" className="transition hover:text-white">Terms</Link></li>
-            </ul>
           </div>
           <div>
             <p className="text-sm font-semibold text-white">Service area</p>
