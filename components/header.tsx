@@ -1,12 +1,14 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import clsx from 'clsx';
 import { Container } from '@/components/ui/container';
 import { PhoneLink } from '@/components/phone-link';
 import { getEmergencyServices, servicesConfig } from '@/lib/services';
+import { IMAGES } from '@/lib/images';
 
 export function Header() {
   const pathname = usePathname();
@@ -20,8 +22,9 @@ export function Header() {
     <header className="sticky top-0 z-50 border-b border-slate-200/70 bg-header-gradient backdrop-blur">
       <Container>
         <div className="flex items-center justify-between py-4">
-          <Link href="/" className="text-xl font-semibold text-ink-950">
-            Prudent
+          <Link href="/" className="inline-flex items-center gap-2">
+            <Image src={IMAGES.brand.logoMark} alt="Prudent" width={36} height={36} />
+            <span className="text-xl font-semibold text-ink-950">Prudent</span>
           </Link>
           <nav className="hidden items-center gap-6 text-sm font-medium text-ink-700 md:flex">
             <Link
