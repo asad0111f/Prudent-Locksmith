@@ -75,11 +75,7 @@ export function Header() {
               Contact
             </Link>
           </nav>
-          <div className="hidden md:block">
-            <PhoneLink asButton>Call Now</PhoneLink>
-          </div>
-          <div className="flex items-center gap-3 md:hidden">
-            <PhoneLink asButton size="sm">Call</PhoneLink>
+          <div className="flex items-center md:hidden">
             <MobileMenu />
           </div>
         </div>

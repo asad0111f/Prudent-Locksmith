@@ -70,7 +70,13 @@ export function PhoneLink({
 
     if (typeof window !== 'undefined') {
       event?.preventDefault?.();
-      window.location.href = SITE.phoneHref;
+      const tempLink = document.createElement('a');
+      tempLink.href = SITE.phoneHref;
+      tempLink.style.position = 'absolute';
+      tempLink.style.left = '-9999px';
+      document.body.appendChild(tempLink);
+      tempLink.click();
+      document.body.removeChild(tempLink);
     }
   }
 

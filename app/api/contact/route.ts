@@ -84,32 +84,35 @@ function getPageTypeFromUrl(url: string) {
   }
 }
 
-function safeString(value: FormDataEntryValue | null) {
-  return typeof value === 'string' ? value.trim() : '';
+function safeString(value: FormDataEntryValue | null, maxLength: number) {
+  if (typeof value !== 'string') return '';
+  const trimmed = value.trim();
+  if (trimmed.length <= maxLength) return trimmed;
+  return trimmed.slice(0, maxLength);
 }
 
 function parseBody(data: Record<string, FormDataEntryValue | null>) {
   return {
-    name: safeString(data.name),
-    phone: safeString(data.phone),
-    email: safeString(data.email),
-    serviceNeeded: safeString(data.serviceNeeded || data.service),
-    city: safeString(data.city),
-    message: safeString(data.message),
-    pageUrl: safeString(data.pageUrl),
+    name: safeString(data.name, 200),
+    phone: safeString(data.phone, 200),
+    email: safeString(data.email, 200),
+    serviceNeeded: safeString(data.serviceNeeded || data.service, 200),
+    city: safeString(data.city, 200),
+    message: safeString(data.message, 4000),
+    pageUrl: safeString(data.pageUrl, 2000),
     utm: {
-      source: safeString(data.utm_source),
-      medium: safeString(data.utm_medium),
-      campaign: safeString(data.utm_campaign),
-      term: safeString(data.utm_term),
-      content: safeString(data.utm_content),
-      gclid: safeString(data.gclid),
-      wbraid: safeString(data.wbraid),
-      gbraid: safeString(data.gbraid)
+      source: safeString(data.utm_source, 200),
+      medium: safeString(data.utm_medium, 200),
+      campaign: safeString(data.utm_campaign, 200),
+      term: safeString(data.utm_term, 200),
+      content: safeString(data.utm_content, 200),
+      gclid: safeString(data.gclid, 200),
+      wbraid: safeString(data.wbraid, 200),
+      gbraid: safeString(data.gbraid, 200)
     },
-    landingSlug: safeString(data.landingSlug),
-    ts: safeString(data.ts),
-    honeypot: safeString(data.company)
+    landingSlug: safeString(data.landingSlug, 200),
+    ts: safeString(data.ts, 50),
+    honeypot: safeString(data.company, 200)
   };
 }
 
@@ -174,13 +177,31 @@ export async function POST(request: Request) {
   const apiKey = process.env.EMAIL_PROVIDER_API_KEY || '';
   const emailFrom = process.env.EMAIL_FROM || '';
   const emailTo = process.env.EMAIL_TO || EMAIL_TO_DEFAULT;
+  const missing: string[] = [];
 
-  if (!apiKey || !emailFrom) {
-    logEvent('error', 'contact_email_config', { hasKey: Boolean(apiKey), hasFrom: Boolean(emailFrom) });
-    return NextResponse.json({ ok: false, error: 'Email not configured.' }, { status: 500 });
+  if (!apiKey) missing.push('EMAIL_PROVIDER_API_KEY');
+  if (!emailFrom) missing.push('EMAIL_FROM');
+
+  if (missing.length > 0) {
+    logEvent('error', 'contact_email_config', { missing });
+    console.error('[contact_email_config] missing env vars:', missing.join(', '));
+    return NextResponse.json(
+      {
+        ok: false,
+        error: 'Email not configured',
+        missing,
+        hint: 'Set vars in .env.local (dev) or Vercel env (prod) and restart/redeploy.',
+        ...(missing.includes('EMAIL_FROM')
+          ? { detail: 'EMAIL_FROM must be a Resend-verified sender (domain or address).' }
+          : {})
+      },
+      { status: 500 }
+    );
   }
 
-  const subject = `New Service Request — ${data.serviceNeeded || 'General'} — ${data.city || 'Hamilton area'}`;
+  const subject = `Prudent Locksmith — New Request from ${data.name || 'Website Visitor'} — ${
+    data.serviceNeeded || 'General'
+  }`;
   const timestamp = new Date().toISOString();
 
   const textBody = [
@@ -239,7 +260,9 @@ export async function POST(request: Request) {
       replyTo: isValidEmail(data.email) ? data.email : undefined
     });
   } catch (error) {
-    logEvent('error', 'contact_email_provider', { ip: ipMasked, error: (error as Error).message });
+    const errorMessage = (error as Error).message || 'unknown';
+    logEvent('error', 'contact_email_provider', { ip: ipMasked, error: errorMessage });
+    console.error('[contact_email_provider] send failed:', errorMessage);
     getErrorReporter()?.capture(error as Error, { route: 'contact' });
     return NextResponse.json({ ok: false, error: 'Unable to send email right now.' }, { status: 502 });
   }

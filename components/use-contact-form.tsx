@@ -124,7 +124,11 @@ export function useContactForm({ onSuccess }: UseContactFormOptions = {}) {
       if (!response.ok) {
         const data = await response.json().catch(() => null);
         setStatus('error');
-        setMessage(data?.error || 'Please try again or call for immediate service.');
+        if (data?.missing && Array.isArray(data.missing) && data.missing.length > 0) {
+          setMessage(`Email not configured: missing ${data.missing.join(', ')}`);
+        } else {
+          setMessage(data?.error || 'Please try again or call for immediate service.');
+        }
         return;
       }
 

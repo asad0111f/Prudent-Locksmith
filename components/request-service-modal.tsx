@@ -106,7 +106,6 @@ export function RequestServiceModal() {
             submitLabel="Send Request"
             serviceName={serviceName}
             autoFocusFirst
-            onSuccess={close}
           />
         </div>
       </div>

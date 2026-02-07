@@ -7,7 +7,8 @@ Lead-generation site for locksmith and garage door services with local SEO focus
 
 ## Local Development
 1. `npm install`
-2. `npm run dev`
+2. Create `.env.local` from `.env.local.template`, set `EMAIL_PROVIDER_API_KEY` and `EMAIL_FROM`, then restart `npm run dev`.
+3. `npm run dev`
 
 ## Deploy to Vercel
 - Import the repo in Vercel.
@@ -15,8 +16,9 @@ Lead-generation site for locksmith and garage door services with local SEO focus
 - Deploy.
 
 ## Environment Variables
-Set in Vercel or your local `.env` file (do not commit secrets).
+Set in Vercel or your local `.env.local` file (do not commit secrets).
 - `SITE_URL`
+- `NEXT_PUBLIC_SITE_URL`
 - `EMAIL_PROVIDER_API_KEY`
 - `EMAIL_FROM`
 - `EMAIL_TO`
