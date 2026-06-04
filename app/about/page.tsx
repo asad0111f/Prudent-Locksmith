@@ -7,11 +7,11 @@ import { PhoneLink } from '@/components/phone-link';
 import { SITE } from '@/lib/site';
 
 export const metadata: Metadata = {
-  title: 'About Prudent Locksmith and Garage Services',
+  title: 'About Prudent Locksmith and Garage Door Services',
   description: `${SITE.name} — licensed, insured, and locally operated locksmith and garage door service in ${SITE.serviceAreaPrimary} and surrounding communities.`,
   alternates: { canonical: '/about' },
   openGraph: {
-    title: 'About Prudent Locksmith and Garage Services',
+    title: 'About Prudent Locksmith and Garage Door Services',
     description: `Locally operated locksmith and garage door service in ${SITE.serviceAreaPrimary}.`,
     url: '/about'
   }

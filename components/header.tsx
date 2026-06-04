@@ -48,7 +48,7 @@ export function Header() {
               </div>
               <div>
                 <span className="block text-lg font-bold font-display text-ink-950 leading-tight tracking-tight">Prudent</span>
-                <span className="block text-[10px] font-medium text-ink-600 leading-tight uppercase tracking-wider">Locksmith &amp; Garage</span>
+                <span className="block text-[10px] font-medium text-ink-600 leading-tight uppercase tracking-wider">Locksmith &amp; Garage Door</span>
               </div>
             </Link>
 

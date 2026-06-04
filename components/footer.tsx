@@ -53,7 +53,7 @@ export function Footer() {
               <Image src={IMAGES.brand.logoMark} alt="Prudent" width={32} height={32} className="opacity-90 group-hover:opacity-100 transition-opacity" />
               <div>
                 <span className="block text-base font-bold text-white leading-tight font-display">Prudent</span>
-                <span className="block text-[10px] font-medium text-slate-400 uppercase tracking-wider">Locksmith &amp; Garage</span>
+                <span className="block text-[10px] font-medium text-slate-400 uppercase tracking-wider">Locksmith &amp; Garage Door</span>
               </div>
             </Link>
             <p className="mt-4 text-sm leading-relaxed text-slate-400">

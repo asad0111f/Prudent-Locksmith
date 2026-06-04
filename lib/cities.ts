@@ -10,7 +10,7 @@ export const cities: City[] = [
   {
     name: 'Hamilton',
     slug: 'hamilton',
-    description: 'Prudent Locksmith and Garage Services provides fast locksmith and garage door service across Hamilton, ON with clear pricing and dependable dispatch.',
+    description: 'Prudent Locksmith and Garage Door Services provides fast locksmith and garage door service across Hamilton, ON with clear pricing and dependable dispatch.',
     topServices: [
       'garage-door-repair/garage-door-not-opening-or-stuck',
       'garage-door-repair/broken-garage-door-spring-repair',
@@ -154,7 +154,7 @@ export const cities: City[] = [
   {
     name: 'Waterdown',
     slug: 'waterdown',
-    description: 'Prudent Locksmith and Garage Services provides fast locksmith and garage door support in Waterdown with clear pricing.',
+    description: 'Prudent Locksmith and Garage Door Services provides fast locksmith and garage door support in Waterdown with clear pricing.',
     topServices: [
       'garage-door-repair/door-alignment-and-safety-inspection',
       'garage-door-repair/track-repair-or-realignment',

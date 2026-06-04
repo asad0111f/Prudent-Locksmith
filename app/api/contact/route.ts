@@ -199,7 +199,7 @@ export async function POST(request: Request) {
     );
   }
 
-  const subject = `Prudent Locksmith — New Request from ${data.name || 'Website Visitor'} — ${
+  const subject = `Prudent Locksmith and Garage Door Services — New Request from ${data.name || 'Website Visitor'} — ${
     data.serviceNeeded || 'General'
   }`;
   const timestamp = new Date().toISOString();

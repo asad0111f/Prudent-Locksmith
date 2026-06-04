@@ -1,5 +1,5 @@
 export const SITE = {
-  name: 'Prudent Locksmith and Garage Services',
+  name: 'Prudent Locksmith and Garage Door Services',
   description:
     'Premium locksmith and garage door services with fast response, clear pricing, and dependable technicians.',
   baseUrl: process.env.NEXT_PUBLIC_SITE_URL || process.env.SITE_URL || 'https://www.purdentlocksmith.ca',

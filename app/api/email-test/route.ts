@@ -36,7 +36,7 @@ export async function POST() {
     await resend.emails.send({
       from: emailFrom,
       to: emailTo,
-      subject: 'Resend email test — Prudent Locksmith',
+      subject: 'Resend email test — Prudent Locksmith and Garage Door Services',
       text: 'This is a test email sent from /api/email-test.'
     });
   } catch (error) {

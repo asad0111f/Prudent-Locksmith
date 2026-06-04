@@ -16,9 +16,9 @@ import { SITE } from '@/lib/site';
 import { IMAGES } from '@/lib/images';
 
 export const metadata: Metadata = {
-  title: 'Prudent Locksmith and Garage Services — Hamilton & GTA',
+  title: 'Prudent Locksmith and Garage Door Services — Hamilton & GTA',
   description:
-    'Prudent Locksmith and Garage Services offers fast, professional locksmith and garage door help with clear pricing and reliable local technicians. Call now for urgent service.',
+    'Prudent Locksmith and Garage Door Services offers fast, professional locksmith and garage door help with clear pricing and reliable local technicians. Call now for urgent service.',
   alternates: { canonical: '/' }
 };
 
@@ -140,7 +140,7 @@ export default function HomePage() {
                 <h1 className="font-display text-4xl font-extrabold leading-[1.1] text-white sm:text-5xl lg:text-6xl">
                   Prudent Locksmith &amp;{' '}
                   <span className="relative inline-block">
-                    <span className="relative z-10 text-teal-400 text-teal-glow">Garage Services</span>
+                    <span className="relative z-10 text-teal-400 text-teal-glow">Garage Door Services</span>
                   </span>{' '}
                   &mdash; your trusted local experts
                 </h1>
@@ -149,7 +149,7 @@ export default function HomePage() {
               {/* Sub-copy */}
               <Reveal as="div" delay={120}>
                 <p className="text-lg leading-relaxed text-slate-300 max-w-lg">
-                  Locked out, stuck door, or damaged lock? Prudent Locksmith and Garage Services delivers calm, professional
+                  Locked out, stuck door, or damaged lock? Prudent Locksmith and Garage Door Services delivers calm, professional
                   help with upfront pricing and local technicians across Hamilton and the GTA.
                 </p>
               </Reveal>
