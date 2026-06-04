@@ -6,8 +6,8 @@ import { useRequestServiceModal } from '@/components/request-service-context';
 type RequestServiceTriggerProps = {
   serviceName?: string;
   label?: string;
-  variant?: 'primary' | 'secondary';
-  size?: 'md' | 'sm';
+  variant?: 'primary' | 'secondary' | 'urgent' | 'ghost-dark';
+  size?: 'md' | 'sm' | 'lg';
   className?: string;
   variantKey?: 'control' | 'alt';
 };

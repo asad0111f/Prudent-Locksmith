@@ -5,5 +5,16 @@ export const SITE = {
   baseUrl: process.env.NEXT_PUBLIC_SITE_URL || process.env.SITE_URL || 'https://www.purdentlocksmith.ca',
   sitemapBaseUrl: 'https://www.purdentlocksmith.ca',
   phoneDisplay: '+1 289-556-6322',
-  phoneHref: 'tel:+12895566322'
+  phoneHref: 'tel:+12895566322',
+  email: 'info@purdentlocksmith.ca',
+  province: 'Ontario',
+  country: 'Canada',
+  serviceAreaPrimary: 'Hamilton, ON',
+  serviceAreaCities: [
+    'Hamilton', 'Burlington', 'Oakville', 'Mississauga',
+    'Stoney Creek', 'Ancaster', 'Dundas', 'Waterdown', 'Milton', 'Brampton'
+  ],
+  hours: 'Monday–Sunday, 24/7 emergency availability',
+  licenseNote: 'Operates in compliance with applicable Ontario trade and business regulations. Technicians carry general liability insurance.'
 };
+

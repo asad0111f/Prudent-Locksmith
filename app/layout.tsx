@@ -8,7 +8,6 @@ import { Footer } from '@/components/footer';
 import { StickyCtaBar } from '@/components/sticky-cta';
 import { RequestServiceProvider } from '@/components/request-service-context';
 import { RequestServiceModal } from '@/components/request-service-modal';
-import { DesktopAssistCard } from '@/components/desktop-assist-card';
 
 const inter = Inter({ subsets: ['latin'], weight: ['400', '500', '600', '700'], display: 'swap' });
 
@@ -47,28 +46,79 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const gtmId = process.env.GTM_CONTAINER_ID || process.env.NEXT_PUBLIC_GTM_ID;
   const organizationJsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'Organization',
+    '@type': 'LocalBusiness',
+    '@id': `${SITE.baseUrl}/#business`,
     name: SITE.name,
     url: SITE.baseUrl,
     telephone: SITE.phoneDisplay,
-    areaServed: 'Hamilton, ON and surrounding areas'
+    email: SITE.email,
+    image: `${SITE.baseUrl}/logo.png`,
+    priceRange: '$$',
+    currenciesAccepted: 'CAD',
+    paymentAccepted: 'Cash, Credit Card, Debit Card',
+    description: SITE.description,
+    areaServed: SITE.serviceAreaCities.map((city) => ({
+      '@type': 'City',
+      name: `${city}, Ontario, Canada`
+    })),
+    serviceArea: {
+      '@type': 'GeoCircle',
+      geoMidpoint: {
+        '@type': 'GeoCoordinates',
+        latitude: 43.2557,
+        longitude: -79.8711
+      },
+      geoRadius: '80000'
+    },
+    openingHoursSpecification: [
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
+        opens: '00:00',
+        closes: '23:59'
+      }
+    ],
+    knowsAbout: [
+      'Locksmith Services',
+      'Garage Door Repair',
+      'Garage Door Opener Installation',
+      'Residential Locksmith',
+      'Commercial Locksmith',
+      'Automotive Locksmith',
+      'Emergency Lockout Service'
+    ],
+    hasMap: 'https://maps.google.com/?q=Hamilton,ON'
   };
 
   return (
     <html lang="en">
       <body className={inter.className}>
-        {analyticsEnabled && gtmId ? (
+        {analyticsEnabled ? (
           <>
-            <Script id="gtm-init" strategy="afterInteractive">
+            {gtmId && (
+              <Script id="gtm-init" strategy="afterInteractive">
+                {`
+                  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                  })(window,document,'script','dataLayer','${gtmId}');
+                `}
+              </Script>
+            )}
+            <Script
+              async
+              src="https://www.googletagmanager.com/gtag/js?id=AW-18090932025"
+              strategy="afterInteractive"
+            />
+            <Script id="google-tag-init" strategy="afterInteractive">
               {`
-                (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-                })(window,document,'script','dataLayer','${gtmId}');
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'AW-18090932025');
               `}
             </Script>
-            {/* Google Ads conversion snippets can be inserted via GTM when ready. */}
           </>
         ) : null}
         <RequestServiceProvider>
@@ -76,7 +126,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <main className="min-h-screen pb-24 sm:pb-0">{children}</main>
           <Footer />
           <StickyCtaBar />
-          <DesktopAssistCard />
           <RequestServiceModal />
         </RequestServiceProvider>
         {analyticsEnabled && gtmId ? (

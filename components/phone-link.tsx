@@ -11,7 +11,7 @@ type CommonProps = {
   children?: ReactNode;
   className?: string;
   variant?: 'primary' | 'secondary';
-  size?: 'md' | 'sm';
+  size?: 'md' | 'sm' | 'lg';
   eventName?: AnalyticsEventName;
   serviceName?: string;
   city?: string;
